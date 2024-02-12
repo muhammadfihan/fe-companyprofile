@@ -17,17 +17,27 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  margin-top: 90px;
 }
-
+.brightness-custom {
+  filter: brightness(40%); /* Sesuaikan nilai brightness sesuai kebutuhan (dari 0% hingga 100%) */
+}
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+@keyframes marqueeAnimation {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee {
+  white-space: nowrap;
+  animation: marqueeAnimation 10s linear infinite;
 }
