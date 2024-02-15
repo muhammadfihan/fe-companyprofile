@@ -40,9 +40,9 @@ const ItemSolution = ({ gambarfitur, judulgambar, descjudul, index }) => {
           {descjudul}
         </p>
         <div className="flex flex-row mt-3 md:mt-10 md:gap-x-4">
-          <a
+          <button
             href="#"
-            className="inline-flex justify-center items-center py-3 px-5 text-base font text-center text-white rounded-full bg-red-500 hover:bg-red-800 font-light"
+            className="inline-flex justify-center items-center p-2 px-3 text-base font text-center text-white rounded-xl bg-red-500 hover:bg-red-800 font-light"
           >
             Konsultasi
             <svg
@@ -60,7 +60,7 @@ const ItemSolution = ({ gambarfitur, judulgambar, descjudul, index }) => {
                 d="M1 5h12m0 0L9 1m4 4L9 9"
               />
             </svg>
-          </a>
+          </button>
           <div className="flex items-center justify-start  gap-x-1 ms-2">
             <FontAwesomeIcon icon={faStar} className=" text-yellow-400" />
             <p className="md:text-md lg:text-lg text-xs font-light">400++ successful project</p>

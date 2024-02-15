@@ -17,15 +17,15 @@ const OurProduct = ({ gambar, perusahaan, deskripsi, kalimat }) => {
   const { ref, isVisible } = VisibleComponent();
 
   return (
-    <div className="px-8 flex flex-col gap-y-4  lg:flex lg:flex-row-reverse md:px-16 lg:px-40 py-20">
-      <div
-        ref={ref}
-        className={`${
-          isVisible
-            ? "animate-fade-left self-center animate-once animate-duration-[800ms] animate-delay-0 animate-ease-in"
-            : "opacity-0"
-        } flex justify-center`}
-      >
+    <div
+      ref={ref}
+      className={`${
+        isVisible
+          ? "animate-fade-up animate-once animate-duration-[800ms] animate-delay-0 animate-ease-in"
+          : "opacity-0"
+      } px-8 flex flex-col gap-y-4  lg:flex lg:flex-row-reverse md:px-16 lg:px-40 py-20`}
+    >
+      <div className={`flex justify-center`}>
         {/* <img
           className="lg:w-[50vw] md:w-[30vw] w-[29vw] h-auto"
           src="../../../our.png"
@@ -49,14 +49,7 @@ const OurProduct = ({ gambar, perusahaan, deskripsi, kalimat }) => {
           </div>
         </div>
       </div>
-      <div
-        ref={ref}
-        className={`${
-          isVisible
-            ? "animate-fade-right animate-once animate-duration-[800ms] animate-delay-0 animate-ease-in"
-            : "opacity-0"
-        } md:w-full md:mt-16 md:me-24`}
-      >
+      <div className={` md:w-full md:mt-16 md:me-24`}>
         <h2 className="text-3xl font-bold text-gray-800 items-center flex py-4">Our Product</h2>
         <p className="text-lg text-gray-700 md:mb-6 mb-8 text-justify ">
           Code.id offers product such as Activo that enables organizations to efficiently monitor,

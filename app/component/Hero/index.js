@@ -56,7 +56,7 @@ const HeroSection = ({ gambar, perusahaan, deskripsi, kalimat }) => {
           >
             {perusahaan}
           </a>
-          <h1 className="mb-4 text-4xl font-bold tracking-tight leading-none text-white md:text-5xl lg:text-6xl lg:px-20">
+          <h1 className="mb-4 text-4xl font-semibold tracking-tight leading-none text-white md:text-5xl lg:text-6xl lg:px-20">
             {kalimat}
           </h1>
           <p className="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">
