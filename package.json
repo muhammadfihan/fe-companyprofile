@@ -29,6 +29,7 @@
     "sequelize": "^6.37.0"
   },
   "devDependencies": {
+    "@types/lunr": "^2.3.7",
     "@types/node": "20.11.16",
     "@types/react": "18.2.52",
     "autoprefixer": "^10.0.1",

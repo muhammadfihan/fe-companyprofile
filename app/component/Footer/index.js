@@ -9,7 +9,7 @@ const Footer1 = () => {
             <div className="flex justify-center ">
               <div className="relative rounded-3xl overflow-hidden mt-4 md:mx-10 mx-10">
                 <img
-                  className="w-full h-[420px] sm:w-[1200px] xl:w-screen object-cover brightness-custom"
+                  className="w-full h-[550px] md:h-[420px] sm:w-[1200px] xl:w-screen object-cover brightness-custom"
                   src="../../../image5.jpg"
                   alt="Company Logo"
                 />
@@ -31,63 +31,113 @@ const Footer1 = () => {
                       </div>
                     </div>
                     <div className="text-center ">
-                      <div className="grid grid-cols-1 gap-6 mt-5 ">
+                      <div className="grid grid-cols-1 gap-6 ">
                         <div className="md:max-w-xl max-w-md mx-auto mt-4 p-6 bg-transparant  w-screen px-16 sm:px-0 xl:px-20">
-                          <h2 className="text-xl font-semibold mb-4 text-white">Contact Us</h2>
-                          <form>
-                            <div className="grid grid-cols-2 gap-x-4">
-                              <div className="mb-4">
-                                <input
-                                  type="text"
-                                  id="nama"
-                                  name="nama"
-                                  className="w-full rounded-md p-2 bg-gray-500 opacity-70"
-                                />
+                          <div className="backdrop-blur-sm bg-white/30 rounded-lg mt-2">
+                            {/* <form>
+                              <div className="grid grid-cols-2 gap-x-4">
+                                <div className="mb-4">
+                                  <input
+                                    type="text"
+                                    id="nama"
+                                    name="nama"
+                                    className="w-full rounded-md p-2 bg-gray-500 opacity-70"
+                                  />
+                                </div>
+
+                                <div className="mb-4">
+                                  <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    className="w-full rounded-md p-2 bg-gray-500 opacity-70"
+                                  />
+                                </div>
+                                <div className="mb-4">
+                                  <input
+                                    type="text"
+                                    id="comany"
+                                    name="nama"
+                                    className="w-full rounded-md p-2 bg-gray-500 opacity-70"
+                                  />
+                                </div>
+
+                                <div className="mb-4">
+                                  <input
+                                    type="email"
+                                    id="client"
+                                    name="email"
+                                    className="w-full rounded-md p-2 bg-gray-500 opacity-70"
+                                  />
+                                </div>
                               </div>
 
                               <div className="mb-4">
-                                <input
-                                  type="email"
-                                  id="email"
-                                  name="email"
+                                <textarea
+                                  id="pesan"
+                                  name="pesan"
+                                  rows="4"
                                   className="w-full rounded-md p-2 bg-gray-500 opacity-70"
-                                />
-                              </div>
-                              <div className="mb-4">
-                                <input
-                                  type="text"
-                                  id="comany"
-                                  name="nama"
-                                  className="w-full rounded-md p-2 bg-gray-500 opacity-70"
-                                />
+                                ></textarea>
                               </div>
 
-                              <div className="mb-4">
-                                <input
-                                  type="email"
-                                  id="client"
-                                  name="email"
-                                  className="w-full rounded-md p-2 bg-gray-500 opacity-70"
-                                />
+                              <button
+                                type="submit"
+                                className="bg-red-500 text-white py-2 px-4 rounded-md w-full"
+                              >
+                                Kirim
+                              </button>
+                            </form> */}
+                            <form className="w-full max-w-lg p-6">
+                              <div className="flex flex-wrap -mx-3 mb-6">
+                                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                  <input
+                                    className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    type="text"
+                                    placeholder="Nama"
+                                  />
+                                </div>
+                                <div className="w-full md:w-1/2 px-3">
+                                  <input
+                                    className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    type="text"
+                                    placeholder="Email"
+                                  />
+                                </div>
                               </div>
-                            </div>
-
-                            <div className="mb-4">
-                              <textarea
-                                id="pesan"
-                                name="pesan"
-                                rows="4"
-                                className="w-full rounded-md p-2 bg-gray-500 opacity-70"
-                              ></textarea>
-                            </div>
-
-                            <button
-                              type="submit"
-                              className="bg-red-500 text-white py-2 px-4 rounded-md w-full"
-                            >
-                              Kirim
-                            </button>
-                          </form>
+                              <div className="flex flex-wrap -mx-3 mb-6">
+                                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                  <input
+                                    className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    type="text"
+                                    placeholder="No Handphone"
+                                  />
+                                </div>
+                                <div className="w-full md:w-1/2 px-3">
+                                  <input
+                                    className="appearance-none block w-full bg-gray-200 text-gray-700  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    type="text"
+                                    placeholder="Perusahaan"
+                                  />
+                                </div>
+                              </div>
+                              <div className="flex flex-wrap -mx-3 mb-6">
+                                <div className="w-full px-3">
+                                  <textarea
+                                    className="appearance-none block w-full bg-gray-200 text-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    type="text"
+                                    placeholder="Pesan"
+                                  ></textarea>
+                                </div>
+                              </div>
+                              <button
+                                type="submit"
+                                className="bg-red-500 text-white py-2 px-4 rounded-md w-full"
+                              >
+                                Kirim Email
+                              </button>
+                            </form>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -100,7 +150,7 @@ const Footer1 = () => {
       </section>
       <section className="bg-gray-300">
         <div className="grid grid-rows-3 md:grid-cols-2 lg:grid-cols-3 py-8 px-10 gap-y-6 md:px-20 lg:px-36 lg:grid-rows-1">
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 mt-5">
             <div className="grid grid-cols-1">
               <img className="w-[auto] h-[30px]" src="../../../code.png" alt="Company Logo" />
             </div>

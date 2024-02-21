@@ -49,17 +49,17 @@ const HeroSection = ({ gambar, perusahaan, deskripsi, kalimat }) => {
         style={{ backgroundImage: `url(${gambar})` }}
         className="bg-cover bg-center bg-gray-500 bg-blend-multiply"
       >
-        <div className="px-4 mx-auto max-w-screen-xl text-center py-20 lg:py-28">
+        <div className="px-4 mx-auto max-w-screen-xl text-center py-16 lg:py-20">
           <a
             href="#"
             className="inline-flex justify-center mb-10 hover:text-gray-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-400"
           >
             {perusahaan}
           </a>
-          <h1 className="mb-4 text-4xl font-semibold tracking-tight leading-none text-white md:text-5xl lg:text-6xl lg:px-20">
+          <h1 className="mb-4 text-3xl font-semibold tracking-tight leading-none text-white md:text-5xl lg:text-6xl lg:px-20">
             {kalimat}
           </h1>
-          <p className="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">
+          <p className="mb-8 text-md font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">
             {deskripsi}
           </p>
           <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
