@@ -21,18 +21,18 @@ const products = [
     href: "/pages/our-solution/custom-development",
     icon: ChartPieIcon,
   },
-  {
-    name: "Asset Management",
-    description: "Speak directly to your customers",
-    href: "/pages/our-solution/asset-management",
-    icon: CursorArrowRaysIcon,
-  },
-  {
-    name: "Klaim Management",
-    description: "Your customers’ data will be safe and secure",
-    href: "/pages/our-solution/claim-management",
-    icon: FingerPrintIcon,
-  },
+  // {
+  //   name: "Asset Management",
+  //   description: "Speak directly to your customers",
+  //   href: "/pages/our-solution/asset-management",
+  //   icon: CursorArrowRaysIcon,
+  // },
+  // {
+  //   name: "Klaim Management",
+  //   description: "Your customers’ data will be safe and secure",
+  //   href: "/pages/our-solution/claim-management",
+  //   icon: FingerPrintIcon,
+  // },
   {
     name: "Principal Product",
     description: "Connect with third-party tools",
@@ -46,10 +46,10 @@ const products = [
     icon: ArrowPathIcon,
   },
 ];
-const callsToAction = [
-  { name: "Watch demo", href: "#", icon: PlayCircleIcon },
-  { name: "Contact sales", href: "#", icon: PhoneIcon },
-];
+// const callsToAction = [
+//   { name: "Watch demo", href: "#", icon: PlayCircleIcon },
+//   { name: "Contact sales", href: "#", icon: PhoneIcon },
+// ];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -60,15 +60,12 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="bg-white fixed top-0 w-full h-20 z-30 ">
-      <nav
-        className="mx-auto flex items-center justify-between p-6 lg:px-20 mt-2"
-        aria-label="Global"
-      >
+    <header className="bg-white fixed top-0 w-screen h-20 z-30 ">
+      <nav className="mx-auto flex items-center justify-between p-6 lg:px-20 " aria-label="Global">
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5 focus:outline-none">
+          <a href="#" className="-m-1.5 focus:outline-none">
             <span className="sr-only">Your Company</span>
-            <img className="h-8 w-auto" src="../../../code.png" alt="" />
+            <img className="h-[3.4rem] w-auto" src="../../../code.png" alt="" />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -88,7 +85,7 @@ export default function Navbar() {
             }`}
             href="/"
           >
-            Home
+            Beranda
           </Link>
           <Popover className="relative">
             <Popover.Button
@@ -100,7 +97,7 @@ export default function Navbar() {
                   : ""
               }`}
             >
-              Our Solution
+              Solusi Kami
               <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
             </Popover.Button>
 
@@ -153,7 +150,7 @@ export default function Navbar() {
             }`}
             href="/pages/our-work"
           >
-            Our Work
+            Portofolio
           </Link>
           <Link
             className={`text-md font-medium leading-6 text-gray-900 link ${
@@ -161,7 +158,7 @@ export default function Navbar() {
             }`}
             href="/pages/career"
           >
-            Career
+            Karier
           </Link>
 
           <Link
@@ -170,7 +167,7 @@ export default function Navbar() {
             }`}
             href="/pages/contact"
           >
-            Contact Us
+            Hubungi Kami
           </Link>
         </Popover.Group>
       </nav>
@@ -200,20 +197,20 @@ export default function Navbar() {
                   }`}
                   href="/"
                 >
-                  Home
+                  Beranda
                 </Link>
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
                       <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                        Product
+                        Solusi Kami
                         <ChevronDownIcon
                           className={classNames(open ? "rotate-180" : "", "h-5 w-5 flex-none")}
                           aria-hidden="true"
                         />
                       </Disclosure.Button>
                       <Disclosure.Panel className="mt-2 space-y-2">
-                        {[...products, ...callsToAction].map((item) => (
+                        {[...products].map((item) => (
                           <Disclosure.Button
                             key={item.name}
                             className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
@@ -231,7 +228,7 @@ export default function Navbar() {
                   }`}
                   href="/pages/our-work"
                 >
-                  Our Work
+                  Portofolio
                 </Link>
                 <Link
                   className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 link ${
@@ -239,7 +236,7 @@ export default function Navbar() {
                   }`}
                   href="/pages/career"
                 >
-                  Career
+                  Karier
                 </Link>
                 <Link
                   className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 link ${
@@ -247,7 +244,7 @@ export default function Navbar() {
                   }`}
                   href="/pages/contact"
                 >
-                  Contact Us
+                  Hubungi Kami
                 </Link>
               </div>
             </div>

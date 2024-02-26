@@ -38,7 +38,7 @@ const ItemCustom = ({ gambarservice, service, descservice, index, listservice })
           {descservice}
         </p>
         <div className={`mt-2 ${!listservice ? "hidden" : ""}`}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-2">{listservice}</div>
+          <ul className="grid list-none grid-cols-1 md:grid-cols-2 gap-y-2">{listservice}</ul>
         </div>
         <button className="flex flex-row mt-3 md:mt-10 md:gap-x-4">
           <div className="text-center rounded-full border bg-red-600">

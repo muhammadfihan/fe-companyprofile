@@ -7,7 +7,7 @@ const Footer2 = () => {
       <section className="w-full">
         <div className="grid grid-rows-2 relative">
           <div className="h-64 bg-white"></div>
-          <div className="h-44 bg-gray-300"></div>
+          <div className="h-44 bg-gray-200"></div>
           <div className="bg-transparant absolute  top-0 left-0 z-10 h-full w-full flex items-center justify-center md:px-8 lg:px-28">
             <div className="flex justify-center ">
               <div className=" rounded-3xl overflow-hidden mt-4 md:mx-10 mx-5">
@@ -30,11 +30,11 @@ const Footer2 = () => {
           </div>
         </div>
       </section>
-      <section className="bg-gray-300 z-50">
+      <section className="bg-gray-200 z-50">
         <div className="md:grid md:grid-rows-3 md:grid-cols-2 lg:grid-cols-3  px-10 gap-y-6 md:px-20 lg:px-36 lg:grid-rows-1 -mt-20">
           <div className="flex flex-col gap-3 md:mt-0 mb-6">
             <div className="grid grid-cols-1">
-              <img className="w-[auto] h-[30px]" src="../../../code.png" alt="Company Logo" />
+              <img className="w-[auto] h-[50px]" src="../../../code.png" alt="Company Logo" />
             </div>
             <p className="font-light text-md md:me-5 lg:me-8">
               CODE.ID is a software development service company that focuses on helping clients turn

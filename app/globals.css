@@ -18,6 +18,7 @@
 
 body {
   margin-top: 90px;
+  font-family: "Montserrat", sans-serif;
 }
 .brightness-custom {
   filter: brightness(40%); /* Sesuaikan nilai brightness sesuai kebutuhan (dari 0% hingga 100%) */

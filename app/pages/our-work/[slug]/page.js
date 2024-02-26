@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Navbar from "../../../component/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Marquee from "react-fast-marquee";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import {
   faChevronLeft,
   faChevronRight,
@@ -25,14 +27,17 @@ export default function DetailPage() {
   const router = useParams();
   const paramslug = router.slug;
 
+  const [content, setContent] = useState(null);
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${url}/portfolios/${paramslug}`);
+        const response = await axios.get(`${url}/list-portofolios/${paramslug}`);
         const updatedData = response.data.data;
         setData(updatedData);
+        setContent(response.data.data.attributes.deskripsi);
 
         setLoading(false);
       } catch (error) {
@@ -56,7 +61,7 @@ export default function DetailPage() {
                 <div className="flex flex-col gap-y-4">
                   <div className="flex flex-row gap-x-1">
                     <div className="font-normal text-sm md:text-lg text-white">
-                      <b>Our Work /</b> Detail Project
+                      <b>Portofolio /</b> Detail Project
                     </div>
                   </div>
                 </div>
@@ -64,42 +69,49 @@ export default function DetailPage() {
             </div>
           </section>
           <section>
-            <div className="flex flex-col p-3 px-4 gap-y-4 md:px-36">
-              <div>
-                <p className="text-lg font-medium md:text-2xl">{detail.attributes.judulporto}</p>
-              </div>
-              <div className="flex flex-row gap-x-4">
-                <div className="text-sm font-light text-gray-700 flex gap-x-2 md:text-xl">
-                  <FontAwesomeIcon
-                    className="text-xl text-gray-500 self-center"
-                    icon={faCircleUser}
-                  />
-                  <p className="self-center">{detail.attributes.perusahaan}</p>
+            <div className="">
+              <article className=" md:max-w-[75%] prose md:prose-xl px-8 mx-auto mt-5 text-justify">
+                <h3 className="">{detail.attributes.nama_aplikasi}</h3>
+                <div className="flex flex-row gap-x-4">
+                  <div className="text-sm font-light text-gray-700 flex gap-x-2 md:text-xl">
+                    <FontAwesomeIcon
+                      className="text-2xl text-gray-500 self-center"
+                      icon={faCircleUser}
+                    />
+                    <div className="self-center font-normal text-[18px]">
+                      {detail.attributes.perusahaan}
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className=" flex justify-center md:px-3  rounded-xl">
-                <img
-                  className=" w-[300px] object-cover rounded-xl md:w-full md:h-60"
-                  src={`${imageurl}${detail.attributes.gambarporto.data.attributes.url}`}
-                  alt=""
-                />
-              </div>
-              <div className="px-4">
-                <p className="text-justify font-light text-md md:text-lg">
-                  {detail.attributes.penjelasan}
-                </p>
-              </div>
+                <div className="-mt-6">
+                  <img
+                    className="w-full object-scale-up rounded-xl md:w-full md:h-96 "
+                    src={`${imageurl}${detail.attributes.gambar_utama.data.attributes.url}`}
+                    alt=""
+                  />
+                </div>
+
+                <article className=" prose-a:text-red-500 -mt-7">
+                  <BlocksRenderer content={content} />
+                </article>
+                <div className="">
+                  <div className="">
+                    <Marquee autoFill={true} gradientWidth={20}>
+                      {detail.attributes.galeri_portofolio.data.map((item) => (
+                        <img
+                          key={item.id}
+                          src={`${imageurl}${item.attributes.url}`}
+                          alt=""
+                          className="mx-3 size-64 object-cover"
+                        />
+                      ))}
+                    </Marquee>
+                  </div>
+                </div>
+              </article>
             </div>
           </section>
-          <section className="md:mt-10">
-            <div className="bg-gray-100 px-8 py-4 gap-y-3 flex flex-col md:px-36 md:py-14">
-              <p className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-gray-800 md:text-3xl">
-                Solusi
-              </p>
-              <p className="text-justify font-light md:text-lg">{detail.attributes.solusi}</p>
-            </div>
-          </section>
-          <section className="md:mt-10">
+          {/* <section className="md:mt-10">
             <div className=" px-8 py-4 gap-y-3 flex flex-col md:px-36">
               <p className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-gray-800 md:text-3xl md:text-center md:py-5">
                 Result
@@ -142,8 +154,10 @@ export default function DetailPage() {
                 </div>
               )}
             </div>
-          </section>
-          <Footer2 />
+          </section> */}
+          <div className="-mt-24">
+            <Footer2 />
+          </div>
         </Animation>
       )}
     </div>

@@ -38,7 +38,7 @@ const ItemWork = ({ gambarporto, judulporto, perusahaan, index, slug }) => {
         </div>
       </div> */}
       <div className="flex justify-center">
-        <div className="max-w-sm min-h-[31vw] bg-white border border-gray-200 rounded-lg shadow place-items-center">
+        <div className="size-[28rem] bg-white border border-gray-200 rounded-lg shadow place-items-center">
           <a className="flex justify-center p-2" href="#">
             <img
               className="object-cover min-h-64 rounded-xl"
@@ -52,7 +52,7 @@ const ItemWork = ({ gambarporto, judulporto, perusahaan, index, slug }) => {
                 {perusahaan}
               </h5>
             </a>
-            <p className="mb-3 font-normal text-gray-700">{judulporto}</p>
+            <p className="mb-3 font-normal text-gray-700 line-clamp-1">{judulporto}</p>
             <Link
               href={`/pages/our-work/${slug}`}
               className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-700 focus:outline-none  "

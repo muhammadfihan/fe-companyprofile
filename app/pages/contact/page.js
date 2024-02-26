@@ -34,17 +34,50 @@ export default function Test() {
             </div>
           </div>
           <div className="h-full">
-            <div className="flex flex-col gap-8 xl:flex-row xl:px-52 xl:mt-20 lg:px-40 lg:mt-20">
+            <div className="text-center p-8 md:px-52">
+              <p className="font-semibold text-2xl mb-5">Diskusikan dengan kami kebutuhan anda</p>
+              <p className="font-normal text-lg">
+                Nakula Sadewa bergerak dibidang Teknologi Informasi, membangun sistem yang akan
+                mempermudah berbagai aktifitas anda didunia bisnis. Hubungi kami dan konsultasikan
+                sistem yang dibutuhkan untuk meningkatkan kinerja anda.
+              </p>
+            </div>
+            <div className="flex flex-row gap-8 justify-center">
               <div className="flex flex-col justify-center items-center gap-8">
-                <div className="bg-white rounded-xl shadow-md border h-[380px] w-[340px] mt-8 flex justify-center items-center">
-                  <img
-                    src="../../../profile.jpeg"
-                    alt=""
-                    className="size-52 sm:size-60 md:size-72 lg:size-96 object-cover rounded-2xl self-center"
-                  />
+                <div className="flex h-full">
+                  <div className="relative flex flex-col items-center rounded-[20px] border-[1px] border-gray-200 w-[400px] mx-auto p-4 bg-white bg-clip-border shadow-md shadow-[#F3F3F3] min-h-[30rem]">
+                    <div className="relative flex h-32 w-full justify-center rounded-xl bg-cover">
+                      <div className="absolute flex h-44 w-full justify-center rounded-xl bg-cover bg-gradient-to-r from-red-500 to-pink-700"></div>
+                      <div className="absolute -bottom-24 flex h-[120px] w-[120px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 ">
+                        <img
+                          className="h-full w-full rounded-full"
+                          src="https://horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app/static/media/avatar11.1060b63041fdffa5f8ef.png"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div className="mt-28 flex flex-col items-center">
+                      <h4 className="text-xl font-bold text-navy-700 ">Adela Parkson</h4>
+                      <p className="text-base font-normal text-gray-600">Product Manager</p>
+                    </div>
+                    <div className="mt-6 mb-3 flex gap-14 md:!gap-14">
+                      <div className="flex flex-col items-center justify-center">
+                        <p className="text-2xl font-bold text-navy-700 ">17</p>
+                        <p className="text-sm font-normal text-gray-600">Posts</p>
+                      </div>
+                      <div className="flex flex-col items-center justify-center">
+                        <p className="text-2xl font-bold text-navy-700 ">9.7K</p>
+                        <p className="text-sm font-normal text-gray-600">Followers</p>
+                      </div>
+                      <div className="flex flex-col items-center justify-center">
+                        <p className="text-2xl font-bold text-navy-700 ">434</p>
+                        <p className="text-sm font-normal text-gray-600">Following</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="flex flex-col gap-5 justify start items-start mx-9 lg:mt-10">
+              {/* <div className="flex flex-col gap-5 justify start items-start mx-9 lg:mt-10">
                 <div className="">
                   <div className="text-sm font-light md:text-lg">TAKE THE LEAD</div>
                   <div className="text-lg font-medium md:text-2xl">Reach out to our COO</div>
@@ -84,7 +117,7 @@ export default function Test() {
                     Parman Kav 28 Jakarta, 11470, Indonesia
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>

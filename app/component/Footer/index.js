@@ -4,12 +4,12 @@ const Footer1 = () => {
       <section className="w-full">
         <div className="grid grid-rows-2 relative">
           <div className="h-64 bg-white"></div>
-          <div className="h-64 bg-gray-300"></div>
+          <div className="h-64 bg-gray-200"></div>
           <div className="bg-transparant absolute  top-0 left-0 z-10 h-full w-full flex items-center justify-center md:px-8 lg:px-28">
             <div className="flex justify-center ">
-              <div className="relative rounded-3xl overflow-hidden mt-4 md:mx-10 mx-10">
+              <div className="relative md:rounded-3xl overflow-hidden mt-4 md:mx-10">
                 <img
-                  className="w-full h-[550px] md:h-[420px] sm:w-[1200px] xl:w-screen object-cover brightness-custom"
+                  className="w-screen h-[550px] md:h-[420px] sm:w-[1200px] xl:w-screen object-cover brightness-custom"
                   src="../../../image5.jpg"
                   alt="Company Logo"
                 />
@@ -32,62 +32,8 @@ const Footer1 = () => {
                     </div>
                     <div className="text-center ">
                       <div className="grid grid-cols-1 gap-6 ">
-                        <div className="md:max-w-xl max-w-md mx-auto mt-4 p-6 bg-transparant  w-screen px-16 sm:px-0 xl:px-20">
-                          <div className="backdrop-blur-sm bg-white/30 rounded-lg mt-2">
-                            {/* <form>
-                              <div className="grid grid-cols-2 gap-x-4">
-                                <div className="mb-4">
-                                  <input
-                                    type="text"
-                                    id="nama"
-                                    name="nama"
-                                    className="w-full rounded-md p-2 bg-gray-500 opacity-70"
-                                  />
-                                </div>
-
-                                <div className="mb-4">
-                                  <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    className="w-full rounded-md p-2 bg-gray-500 opacity-70"
-                                  />
-                                </div>
-                                <div className="mb-4">
-                                  <input
-                                    type="text"
-                                    id="comany"
-                                    name="nama"
-                                    className="w-full rounded-md p-2 bg-gray-500 opacity-70"
-                                  />
-                                </div>
-
-                                <div className="mb-4">
-                                  <input
-                                    type="email"
-                                    id="client"
-                                    name="email"
-                                    className="w-full rounded-md p-2 bg-gray-500 opacity-70"
-                                  />
-                                </div>
-                              </div>
-
-                              <div className="mb-4">
-                                <textarea
-                                  id="pesan"
-                                  name="pesan"
-                                  rows="4"
-                                  className="w-full rounded-md p-2 bg-gray-500 opacity-70"
-                                ></textarea>
-                              </div>
-
-                              <button
-                                type="submit"
-                                className="bg-red-500 text-white py-2 px-4 rounded-md w-full"
-                              >
-                                Kirim
-                              </button>
-                            </form> */}
+                        <div className="md:max-w-xl max-w-md mx-auto mt-10 md:mt-4 md:p-6 bg-transparant  w-screen md:px-16 sm:px-0 xl:px-20">
+                          <div className="backdrop-blur-sm bg-white/20 rounded-lg mt-2">
                             <form className="w-full max-w-lg p-6">
                               <div className="flex flex-wrap -mx-3 mb-6">
                                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -148,11 +94,11 @@ const Footer1 = () => {
           </div>
         </div>
       </section>
-      <section className="bg-gray-300">
+      <section className="bg-gray-200">
         <div className="grid grid-rows-3 md:grid-cols-2 lg:grid-cols-3 py-8 px-10 gap-y-6 md:px-20 lg:px-36 lg:grid-rows-1">
-          <div className="flex flex-col gap-3 mt-5">
+          <div className="flex flex-col gap-3">
             <div className="grid grid-cols-1">
-              <img className="w-[auto] h-[30px]" src="../../../code.png" alt="Company Logo" />
+              <img className="w-[auto] h-[50px]" src="../../../code.png" alt="Company Logo" />
             </div>
             <p className="font-light text-md md:me-5 lg:me-8">
               CODE.ID is a software development service company that focuses on helping clients turn

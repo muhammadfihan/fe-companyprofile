@@ -222,7 +222,7 @@ const FloatingActionButton = () => {
                         </div>
                       </div>
 
-                      <div className="p-4 border-t flex">
+                      <form className="p-4 border-t flex">
                         <input
                           id="user-input"
                           type="text"
@@ -235,12 +235,13 @@ const FloatingActionButton = () => {
                         <button
                           id="send-button"
                           disabled={!input.trim()}
+                          type="submit"
                           onClick={sendMessage}
                           className="bg-red-500 text-white px-4 py-2 rounded-r-md hover:bg-red-600 transition duration-300"
                         >
                           <FontAwesomeIcon icon={faPaperPlane} />
                         </button>
-                      </div>
+                      </form>
                     </div>
                   </Popover.Panel>
                 </Transition>

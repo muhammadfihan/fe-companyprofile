@@ -36,7 +36,7 @@ const ItemSolution = ({ gambarfitur, judulgambar, descjudul, index }) => {
         <h2 className="text-lg bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-gray-800 font-medium  md:text-4xl md:font-bold">
           {judulgambar}
         </h2>
-        <p className="text-sm text-gray-600 mt-3 md:mt-8 md:text-lg md:font-light text-justify">
+        <p className="text-sm text-gray-600 mt-3 md:mt-8 md:text-lg md:font-normal text-justify">
           {descjudul}
         </p>
         <div className="flex flex-row mt-3 md:mt-10 md:gap-x-4">
@@ -61,10 +61,10 @@ const ItemSolution = ({ gambarfitur, judulgambar, descjudul, index }) => {
               />
             </svg>
           </button>
-          <div className="flex items-center justify-start  gap-x-1 ms-2">
+          {/* <div className="flex items-center justify-start  gap-x-1 ms-2">
             <FontAwesomeIcon icon={faStar} className=" text-yellow-400" />
             <p className="md:text-md lg:text-lg text-xs font-light">400++ successful project</p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

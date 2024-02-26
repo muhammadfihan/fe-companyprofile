@@ -1,70 +1,192 @@
 "use client";
 import Navbar from "../../../component/Navbar";
-import logo from "../../../../public/code.png";
-import Layout from "../../../component/layout";
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import Animation from "../../../component/Animation";
+import ItemPrincipal from "../../../component/DataPrincipal";
+import axios from "axios";
+import Footer2 from "../../../component/Footer2";
+import ItemCommercials from "../../../component/Commercials";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 export default function Test() {
+  const url = process.env.NEXT_PUBLIC_API_URL;
+  const imageurl = process.env.NEXT_PUBLIC_IMG_URL;
+  const [loading, setLoading] = useState(true);
+
+  const [mainsection, setMain] = useState(null);
+  const [principalsection, setPrincipal] = useState(null);
+  const [listprincipal, setListprincipal] = useState(null);
+  const [commercialsection, setCommercial] = useState(null);
+  const [listcommercial, setListcommercial] = useState(null);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3;
+  const [currentItems, setCurrentItems] = useState([]);
+  const [indexOfFirstItem, setFirst] = useState([]);
+  const [indexOfLastItem, setLast] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${url}/prinsip-produk?populate[0]=main_section.gambar.media&populate[1]=principal_section.list_principals.icon.media&populate[2]=commercials_section.list_commercials.icon.media&populate[3]=commercials_section.list_commercials.list_commercial_fiturs&populate[6]=list_bidangs.icon_bisnis.media`
+        );
+        setMain(response.data.data.attributes.main_section);
+        setPrincipal(response.data.data.attributes.principal_section);
+        setListprincipal(response.data.data.attributes.principal_section.list_principals.data);
+        setCommercial(response.data.data.attributes.commercials_section);
+        setListcommercial(response.data.data.attributes.commercials_section.list_commercials.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching API data:", error.message);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (listcommercial && listcommercial) {
+      const indexOfLastItem = currentPage * itemsPerPage;
+      const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+      const itemsToDisplay = listcommercial.slice(indexOfFirstItem, indexOfLastItem);
+      setFirst(indexOfFirstItem);
+      setLast(indexOfLastItem);
+      setCurrentItems(itemsToDisplay);
+    }
+  }, [listcommercial, currentPage]);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div>
       <Navbar />
-      <Animation>
-        <section className="h-full md:py-5 relative">
-          <div className="flex flex-wrap flex-col gap-y-6 sm:flex sm:flex-col sm:gap-y-8 px-4 py-1 relative z-20 md:px-16 lg:px-44 md:grid md:grid-cols-2 md:gap-x-14 md:mt-10">
-            <div className="flex flex-col gap-y-2 md:gap-y-5 sm:flex-col">
-              <div className="bg-gray-100 text-xs md:w-80 self-start p-2 rounded-lg md:text-lg">
-                <b>Our Solutions </b>/ Principal Product
+      {loading ? (
+        <></>
+      ) : (
+        <Animation>
+          <section className="h-full md:py-5 relative">
+            <div className="flex flex-wrap flex-col gap-y-6 sm:flex sm:flex-col sm:gap-y-8 px-4 py-1 relative z-20 md:px-16 xl:px-44 md:grid md:grid-cols-2 md:gap-x-14 md:mt-10">
+              <div className="flex flex-col gap-y-2 md:gap-y-5 sm:flex-col">
+                <div className="bg-gray-100 text-xs md:w-80 font-semibold self-start p-2 rounded-lg md:text-md">
+                  {mainsection.judul_path}
+                </div>
+                <p className="text-lg font-semibold md:text-2xl">{mainsection.subjudul}</p>
+                <p className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-gray-800 md:text-4xl">
+                  {mainsection.judul_utama}
+                </p>
+                <div className="bg-white rounded-xl drop-shadow-2xl p-5 md:p-10 mb-3 lg:mt-5">
+                  <p className="font-semibold text-lg md:text-xl md:mb-2">{mainsection.caption}</p>
+                  <p className="text-justify md:text-lg">{mainsection.deskripsi}</p>
+                </div>
+                <div className="bg-white rounded-xl drop-shadow-2xl p-5 grid grid-cols-2 gap-x-4 md:p-10 ">
+                  <div className="grid grid-rows-2 md:flex md:self-center md:flex-col">
+                    <p className="text-3xl font-medium ">{mainsection.count1}</p>
+                    <p className="text-md font-normal">{mainsection.deskripsi1}</p>
+                  </div>
+                  <div className="grid grid-rows-2 md:flex md:self-center md:flex-col">
+                    <p className="text-3xl font-medium ">{mainsection.count2}</p>
+                    <p className="text-md font-normal">{mainsection.deskripsi2}</p>
+                  </div>
+                </div>
               </div>
-              <p className="text-lg font-semibold md:text-2xl">Unlocking Innovation with</p>
-              <p className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-gray-800 md:text-4xl">
-                Our Principal Product
+              <div className="flex flex-col lg:flex-wrap gap-y-5 md:flex-col-reverse md:flex-auto md:self-start flex-auto lg:self-end">
+                <div className="">
+                  <img
+                    src={`${imageurl}${mainsection.gambar.data.attributes.url}`}
+                    className="object-cover rounded-xl shadow-md lg:h-[23vw]"
+                    alt=""
+                  />
+                </div>
+                <div className="">
+                  <p>{mainsection.kalimat_principal}</p>
+                  <button className="bg-red-500 py-2 px-5 text-sm font-normal text-white rounded-full mt-4">
+                    Learn More
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="bg-red-500 h-48 md:h-80 absolute bottom-[100vw] md:bottom-0 w-full bg-gradient-to-r from-red-500 to-red-800 z-10"></div>
+          </section>
+          <section className="h-full md:py-5 relative">
+            <div className="md:px-16 xl:px-44 px-4 gap-y-2 md:gap-y-4 flex flex-col mt-7">
+              <p className="text-lg md:text-xl font-semibold text-red-500">
+                {principalsection.subjudul}
               </p>
-              <div className="bg-white rounded-xl drop-shadow-2xl p-5 md:p-10 mb-3 lg:mt-5">
-                <p className="font-semibold text-lg md:text-xl md:mb-2">Insight for you!</p>
-                <p className="text-justify md:text-lg">
-                  This product has earned acclaim for its user-friendly interface and powerful
-                  features, making it a go-to choice for businesses seeking efficient project
-                  management solutions.
-                </p>
-              </div>
-              <div className="bg-white rounded-xl drop-shadow-2xl p-5 grid grid-cols-2 gap-x-4 md:p-10 ">
-                <div className="grid grid-rows-2 md:flex md:self-center md:flex-col">
-                  <p className="text-3xl font-medium ">10+</p>
-                  <p className="text-md font-normal">Business Sectors</p>
-                </div>
-                <div className="grid grid-rows-2 md:flex md:self-center md:flex-col">
-                  <p className="text-3xl font-medium ">200+</p>
-                  <p className="text-md font-normal">Products</p>
-                </div>
+              <p className="text-xl md:text-3xl font-semibold ">{principalsection.judul_utama}</p>
+              <p className="leading-7 text-justify">{principalsection.deskripsi}</p>
+            </div>
+            <div className="px-[4%] md:px-[5%]">
+              {/* <DataPosition data={data} itemsPerPage={8} /> */}
+              <div className="flex flex-wrap justify-center">
+                {listprincipal.map((item, index) => (
+                  <ItemPrincipal
+                    key={item.id}
+                    gambar={`${imageurl}${item.attributes.icon.data.attributes.url}`}
+                    judul={item.attributes.judul}
+                    deskripsi={item.attributes.deskripsi}
+                    index={index}
+                  />
+                ))}
               </div>
             </div>
-            <div className="flex flex-col lg:flex-wrap gap-y-5 md:flex-col-reverse md:flex-auto md:self-start flex-auto lg:self-end">
-              <div className="">
-                <img
-                  src="../../../principal.png"
-                  className="object-cover rounded-xl shadow-md lg:h-[23vw]"
-                  alt=""
-                />
-              </div>
-              <div className="">
-                <p>
-                  For more than 15 years, code.id has been dedicated to prioritizing client requests
-                  aligned with company needs, while consistently delivering our cutting-edge
-                  principal product, which is a comprehensive software solution designed to
-                  streamline and optimize project management processes across various industries.
+          </section>
+          <section className="bg-white ">
+            <div className="py-6 md:px-16 lg:px-20 px-4 mx-auto max-w-screen-2xl lg:py-10 ">
+              <div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
+                <p className="mb-4 text-xl font-semibold text-red-500 ">
+                  {commercialsection.subjudul}
                 </p>
-                <button className="bg-red-500 py-2 px-5 text-sm font-normal text-white rounded-full mt-4">
-                  Learn More
-                </button>
+                <p className="mb-5 font-semibold text-xl md:text-3xl ">
+                  {commercialsection.judul_utama}
+                </p>
               </div>
+              <div className=" flex flex-wrap justify-center gap-y-4 md:gap-7 md:px-24">
+                {currentItems.map((item, index) => (
+                  <ItemCommercials
+                    key={item.id}
+                    itemicon={`${imageurl}${item.attributes.icon.data.attributes.url}`}
+                    itemjudul={item.attributes.judul}
+                    itemsubjudul={item.attributes.subjudul}
+                    produk={item.attributes.nama_produk}
+                    listitem={item.attributes.list_commercial_fiturs.data.map((itemfitur) => (
+                      <div key={itemfitur.id}>
+                        <li className="flex items-center space-x-3">
+                          <p className="md:text-md lg:text-lg text-xs font-light self-baseline">
+                            <FontAwesomeIcon icon={faCheckCircle} className=" text-green-500 " />
+                          </p>
+                          <span>{itemfitur.attributes.fitur}</span>
+                        </li>
+                      </div>
+                    ))}
+                    index={index}
+                  />
+                ))}
+              </div>
+              {listcommercial.length > itemsPerPage && (
+                <div className="mt-4 flex justify-center items-center text-center gap-4">
+                  <button
+                    onClick={() => paginate(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className="mr-2 px-4 py-2    disabled:opacity-60 border border-red-500"
+                  >
+                    <FontAwesomeIcon icon={faChevronLeft} className="text-red-500 text-bold" />
+                  </button>
+                  <button
+                    onClick={() => paginate(currentPage + 1)}
+                    disabled={indexOfLastItem >= listcommercial?.length}
+                    className="mr-2 px-4 py-2    disabled:opacity-60 border border-red-500"
+                  >
+                    <FontAwesomeIcon icon={faChevronRight} className="text-red-500 text-bold" />
+                  </button>
+                </div>
+              )}
             </div>
-          </div>
-          <div className="bg-red-500 h-80 absolute bottom-[70vw] md:bottom-0 w-full bg-gradient-to-r from-red-500 to-red-800 z-10"></div>
-        </section>
-        <section></section>
-      </Animation>
+          </section>
+          <Footer2 />
+        </Animation>
+      )}
     </div>
   );
 }

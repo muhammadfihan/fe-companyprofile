@@ -1,15 +1,7 @@
 // components/Item.js
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCoffee,
-  faGear,
-  faPeopleGroup,
-  faStar,
-  faUserGroup,
-} from "@fortawesome/free-solid-svg-icons";
-import Image from "next/image";
-import gambar4 from "../../../public/noimg.svg";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import VisibleComponent from "../Visible";
 
 const OurProduct = ({ gambar, perusahaan, deskripsi, kalimat }) => {
@@ -58,7 +50,7 @@ const OurProduct = ({ gambar, perusahaan, deskripsi, kalimat }) => {
           claims. These solutions exemplify our commitment to innovative software solutions for
           businesses.
         </p>
-        <div className="flex flex-col text-lg md:flex-row md:gap-x-10 md:grid md:grid-cols-2">
+        {/* <div className="flex flex-col text-lg md:flex-row md:gap-x-10 md:grid md:grid-cols-2">
           <div className="">
             <FontAwesomeIcon icon={faUserGroup} className="text-3xl text-red-500 py-1" />
             <p className="md:text-xl font-semibold">Online Sistem</p>
@@ -73,7 +65,17 @@ const OurProduct = ({ gambar, perusahaan, deskripsi, kalimat }) => {
               Instalasi mesin antrian semudah memasang perangkat komputer.
             </p>
           </div>
-        </div>
+        </div> */}
+        <ul className="grid list-none grid-cols-1 md:grid-cols-2 gap-y-2">
+          <li className="flex gap-x-2 ">
+            <p className="md:text-md lg:text-lg text-xs font-light self-baseline">
+              <FontAwesomeIcon icon={faCheckCircle} className=" text-green-500 " />
+            </p>
+            <p className="md:text-md lg:text-lg text-xs font-light self-baseline">
+              Pantau nomor antrian di smartphone, mengurangi beban ruang tunggu.
+            </p>
+          </li>
+        </ul>
       </div>
     </div>
   );

@@ -18,33 +18,6 @@ const HeroSection = ({ gambar, perusahaan, deskripsi, kalimat }) => {
           : "opacity-0"
       } relative rounded-3xl overflow-hidden mt-4 md:mx-10 mx-10`}
     >
-      {/* <img src={gambar} alt="" className="w-[1200px] h-[550px] object-cover brightness-50 " />
-      <div className="absolute mt-8 flex top-4 left-1/2 -translate-x-1/2">
-        <div className="text-center rounded-xl border">
-          <h2 className="text-sm text-white p-2 md:text-lg md:p-3">{perusahaan}</h2>
-        </div>
-      </div>
-      <div className=" absolute inset-0 row items-center justify-center mt-28 md:mt-36">
-        <h2 className="text-xl px-8 font-medium text-white  text-center lg:text-5xl md:px-36 ">
-          {kalimat}
-        </h2>
-        <h2 className="text-sm text-white font-light text-center mt-4 px-8 md:text-lg md:px-44">
-          {deskripsi}
-        </h2>
-      </div>
-      <div className=" absolute mb-8 flex gap-x-8 bottom-4 left-1/2 -translate-x-1/2">
-        <div className="text-center rounded-xl border hover:border-red-600 bg-white hover:bg-red-600">
-          <h2 className="text-sm font-light text-gray-600 hover:text-white p-2 md:text-md md:p-3">
-            Mulai Konsultasi
-          </h2>
-        </div>
-        <div className="text-center rounded-xl border hover:bg-white">
-          <h2 className="text-sm font-light text-white p-2 hover:text-black md:text-md md:p-3">
-            Selengkapnya
-          </h2>
-        </div>
-      </div> */}
-
       <section
         style={{ backgroundImage: `url(${gambar})` }}
         className="bg-cover bg-center bg-gray-500 bg-blend-multiply"

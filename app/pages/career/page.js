@@ -43,7 +43,7 @@ export default function Career() {
         <section className="bg-gradient-to-r relative from-red-500 to-red-800 ">
           <div className="h-[350px]">
             <div className="py-8 px-[5%] md:px-[10%]">
-              <div className="flex flex-col gap-y-4">
+              <div className="flex flex-col gap-y-4 md:mt-8">
                 <div className="flex flex-row gap-x-1">
                   <div className="font-semibold text-sm md:text-lg text-white">Career /</div>
                   <div className="font-light text-xs md:text-lg text-white self-center lg:self-center">
