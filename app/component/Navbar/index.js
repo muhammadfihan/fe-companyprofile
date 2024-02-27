@@ -158,7 +158,7 @@ export default function Navbar() {
             }`}
             href="/pages/career"
           >
-            Karier
+            Karir
           </Link>
 
           <Link
@@ -236,7 +236,7 @@ export default function Navbar() {
                   }`}
                   href="/pages/career"
                 >
-                  Karier
+                  Karir
                 </Link>
                 <Link
                   className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 link ${

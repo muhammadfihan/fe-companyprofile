@@ -2,9 +2,8 @@
 
 import axios from "axios";
 import { useState, useEffect } from "react";
-import ContetFooter from "../ContentFooter";
 
-const Footer1 = () => {
+const ContentFooter = () => {
   const url = process.env.NEXT_PUBLIC_API_URL;
   const imageurl = process.env.NEXT_PUBLIC_IMG_URL;
   const [loading, setLoading] = useState(true);
@@ -44,7 +43,7 @@ const Footer1 = () => {
         <></>
       ) : (
         <div>
-          <section className="w-full">
+          {/* <section className="w-full">
             <div className="grid grid-rows-2 relative">
               <div className="h-64 bg-white"></div>
               <div className="h-64 bg-gray-200"></div>
@@ -130,12 +129,54 @@ const Footer1 = () => {
                 </div>
               </div>
             </div>
+          </section> */}
+          <section className="bg-gray-200">
+            <div className="grid grid-rows-3 md:grid-cols-2 lg:grid-cols-3 py-8 px-10 gap-y-6 md:px-20 lg:px-36 lg:grid-rows-1">
+              <div className="flex flex-col gap-3">
+                <div className="grid grid-cols-1">
+                  <img
+                    className="w-[auto] h-[50px]"
+                    src={`${imageurl}${isifooter.logo.data.attributes.url}`}
+                    alt="Company Logo"
+                  />
+                </div>
+                <p className="font-light text-md md:me-5 lg:me-8">{isifooter.deskripsi}</p>
+              </div>
+              <div className="flex flex-col gap-4 self-center md:self-start">
+                <div>
+                  <p className="font-medium text-lg">Kontak</p>
+                  {kontak.map((item, index) => (
+                    <p key={item.id} className="font-light text-sm">
+                      {item.attributes.lokasi} : {item.attributes.email}
+                    </p>
+                  ))}
+                </div>
+                <div>
+                  <p className="font-medium text-lg">Karir</p>
+                  {karir.map((item, index) => (
+                    <p key={item.id} className="font-light text-sm">
+                      {item.attributes.email}
+                    </p>
+                  ))}
+                </div>
+              </div>
+              <div className="flex flex-col gap-4">
+                <div>
+                  <p className="font-medium text-lg">Alamat</p>
+                  {alamat.map((item, index) => (
+                    <div key={item.id} className="leading-9">
+                      <p className="font-medium text-md">{item.attributes.lokasi}</p>
+                      <p className="font-light text-sm">{item.attributes.detail}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </section>
-          <ContetFooter />
         </div>
       )}
     </div>
   );
 };
 
-export default Footer1;
+export default ContentFooter;

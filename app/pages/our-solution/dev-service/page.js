@@ -111,7 +111,11 @@ export default function DevService() {
                 </div>
                 <div className="p-10 self-center order-first md:order-none">
                   <img
-                    src={`${imageurl}${developersection.icon_center.data.attributes.url}`}
+                    src={
+                      developersection.icon_center.data
+                        ? `${imageurl}${developersection.icon_center.data.attributes.url}`
+                        : "../../../noimg.svg"
+                    }
                     className="w-52"
                     alt=""
                   />
@@ -131,7 +135,11 @@ export default function DevService() {
                     <div className="gap-x-6 w-3/4 ms-10 font-medium text-lg md:text-2xl text-white flex justify-center items-center gap-y-4">
                       <div>
                         <img
-                          src={`${imageurl}${developersection.banner_icon.data.attributes.url}`}
+                          src={
+                            developersection.banner_icon.data
+                              ? `${imageurl}${developersection.banner_icon.data.attributes.url}`
+                              : "../../../noimg.svg"
+                          }
                           className="hidden md:block w-24"
                           alt=""
                         />
@@ -192,7 +200,11 @@ export default function DevService() {
                                 <ul className="mt-1 flex flex-col justify-center items-center space-y-2 leading-4 text-gray-500 animate-jump-in animate-once animate-duration-500 animate-delay-0 animate-ease-in">
                                   <li>
                                     <img
-                                      src={`${imageurl}${skillitem.attributes.icon_skill.data.attributes.url}`}
+                                      src={
+                                        skillitem.attributes.icon_skill.data
+                                          ? `${imageurl}${skillitem.attributes.icon_skill.data.attributes.url}`
+                                          : "../../../noimg.svg"
+                                      }
                                       alt=""
                                       ref={ref}
                                       className="size-12 "

@@ -94,7 +94,11 @@ export default function Test() {
               <div className="flex flex-col lg:flex-wrap gap-y-5 md:flex-col-reverse md:flex-auto md:self-start flex-auto lg:self-end">
                 <div className="">
                   <img
-                    src={`${imageurl}${mainsection.gambar.data.attributes.url}`}
+                    src={
+                      mainsection.gambar.data
+                        ? `${imageurl}${mainsection.gambar.data.attributes.url}`
+                        : "../../../noimg.svg"
+                    }
                     className="object-cover rounded-xl shadow-md lg:h-[23vw]"
                     alt=""
                   />
@@ -123,7 +127,11 @@ export default function Test() {
                 {listprincipal.map((item, index) => (
                   <ItemPrincipal
                     key={item.id}
-                    gambar={`${imageurl}${item.attributes.icon.data.attributes.url}`}
+                    gambar={
+                      item.attributes.icon.data
+                        ? `${imageurl}${item.attributes.icon.data.attributes.url}`
+                        : "../../../noimg.svg"
+                    }
                     judul={item.attributes.judul}
                     deskripsi={item.attributes.deskripsi}
                     index={index}
@@ -146,7 +154,11 @@ export default function Test() {
                 {currentItems.map((item, index) => (
                   <ItemCommercials
                     key={item.id}
-                    itemicon={`${imageurl}${item.attributes.icon.data.attributes.url}`}
+                    itemicon={
+                      item.attributes.icon.data
+                        ? `${imageurl}${item.attributes.icon.data.attributes.url}`
+                        : "../../../noimg.svg"
+                    }
                     itemjudul={item.attributes.judul}
                     itemsubjudul={item.attributes.subjudul}
                     produk={item.attributes.nama_produk}

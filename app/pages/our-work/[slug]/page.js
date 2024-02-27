@@ -8,15 +8,7 @@ import Navbar from "../../../component/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Marquee from "react-fast-marquee";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import {
-  faChevronLeft,
-  faChevronRight,
-  faCoffee,
-  faStar,
-  faCheckCircle,
-  faBuildingUser,
-  faCircleUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import Footer2 from "../../../component/Footer2";
 import Animation from "../../../component/Animation";
 
@@ -86,7 +78,11 @@ export default function DetailPage() {
                 <div className="-mt-6">
                   <img
                     className="w-full object-scale-up rounded-xl md:w-full md:h-96 "
-                    src={`${imageurl}${detail.attributes.gambar_utama.data.attributes.url}`}
+                    src={
+                      detail.attributes.gambar_utama.data
+                        ? `${imageurl}${detail.attributes.gambar_utama.data.attributes.url}`
+                        : "../../../noimg.svg"
+                    }
                     alt=""
                   />
                 </div>
@@ -111,51 +107,7 @@ export default function DetailPage() {
               </article>
             </div>
           </section>
-          {/* <section className="md:mt-10">
-            <div className=" px-8 py-4 gap-y-3 flex flex-col md:px-36">
-              <p className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-gray-800 md:text-3xl md:text-center md:py-5">
-                Result
-              </p>
-              {detail.attributes.hasil_portos.data.length > 0 ? (
-                <div className="flex flex-col sm:grid sm:grid-cols-2 md:grid md:grid-cols-3">
-                  {detail.attributes.hasil_portos.data.map((item) => (
-                    <div
-                      key={item.id}
-                      className="grid grid-cols-1 md:grid-cols-1 mb-4 p-2 border rounded-xl sm:mx-2 mx-3"
-                    >
-                      <div className="flex-row gap-x-4 sm:flex-col md:my-3">
-                        <div className=" flex justify-center px-3 mt-3">
-                          <img
-                            className=" w-[300px] object-cover rounded-xl"
-                            src={`${imageurl}${item.attributes.gambarhasil.data.attributes.url}`}
-                            alt=""
-                          />
-                        </div>
-                        <div className="px-3 py-2">
-                          <div className="flex flex-col gap-y-1 px-2 mt-2 sm:px-3 md:px-4 sm:mt-3 md:mt-4 lg:px-6">
-                            <div className="text-xs font-semibold lg:text-lg ">
-                              {item.attributes.hasil}
-                            </div>
-                            <div>
-                              <div className="text-xs font-light lg:text-lg ">
-                                {item.attributes.penjelasan}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="flex flex-col justify-center items-center self-center ">
-                  <img src="../../../nodata.svg" className="h-48" alt="" />
-                  <p className="text-2xl font-normal p-4">No Data</p>
-                </div>
-              )}
-            </div>
-          </section> */}
-          <div className="-mt-24">
+          <div className="">
             <Footer2 />
           </div>
         </Animation>

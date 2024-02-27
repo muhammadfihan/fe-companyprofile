@@ -1,83 +1,79 @@
 "use client";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronLeft,
-  faChevronRight,
-  faCoffee,
-  faEnvelope,
-  faLocation,
-  faLocationDot,
-  faLocationPin,
-  faMessage,
-  faPhone,
-  faStar,
-} from "@fortawesome/free-solid-svg-icons";
+
 import Footer1 from "../../component/Footer";
 import Navbar from "../../component/Navbar";
 import Animation from "../../component/Animation";
+import Marquee from "react-fast-marquee";
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import ItemCard from "../../component/ContactCard";
 
-export default function Test() {
+export default function Contact() {
+  const url = process.env.NEXT_PUBLIC_API_URL;
+  const imageurl = process.env.NEXT_PUBLIC_IMG_URL;
+  const [loading, setLoading] = useState(true);
+
+  const [mainsection, setMain] = useState(null);
+  const [listcontact, setList] = useState(null);
+  const [sectionclient, setSectionclient] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setTimeout(async () => {
+          const response = await axios.get(`${url}/list-logos?populate=*`);
+          setSectionclient(response.data.data);
+
+          const response2 = await axios.get(
+            `${url}/hubungi-kami?populate[0]=list_contacts.profile_picture.media`
+          );
+          setMain(response2.data.data.attributes);
+          setList(response2.data.data.attributes.list_contacts.data);
+          setLoading(false);
+        }, 300);
+      } catch (error) {
+        console.error("Error fetching API data:", error.message);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div>
       <Navbar />
-      <Animation className="h-full w-full">
-        <section className="">
-          <div className="h-[90px] bg-gradient-to-r from-red-500 to-red-800 ">
-            <div className="py-8 px-[5%] md:px-[10%]">
-              <div className="flex flex-col gap-y-4">
-                <div className="flex flex-row gap-x-1">
-                  <div className="font-normal text-sm md:text-lg text-white">
-                    <b>Contact Us /</b> Excecutive
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="h-full">
-            <div className="text-center p-8 md:px-52">
-              <p className="font-semibold text-2xl mb-5">Diskusikan dengan kami kebutuhan anda</p>
-              <p className="font-normal text-lg">
-                Nakula Sadewa bergerak dibidang Teknologi Informasi, membangun sistem yang akan
-                mempermudah berbagai aktifitas anda didunia bisnis. Hubungi kami dan konsultasikan
-                sistem yang dibutuhkan untuk meningkatkan kinerja anda.
-              </p>
-            </div>
-            <div className="flex flex-row gap-8 justify-center">
-              <div className="flex flex-col justify-center items-center gap-8">
-                <div className="flex h-full">
-                  <div className="relative flex flex-col items-center rounded-[20px] border-[1px] border-gray-200 w-[400px] mx-auto p-4 bg-white bg-clip-border shadow-md shadow-[#F3F3F3] min-h-[30rem]">
-                    <div className="relative flex h-32 w-full justify-center rounded-xl bg-cover">
-                      <div className="absolute flex h-44 w-full justify-center rounded-xl bg-cover bg-gradient-to-r from-red-500 to-pink-700"></div>
-                      <div className="absolute -bottom-24 flex h-[120px] w-[120px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 ">
-                        <img
-                          className="h-full w-full rounded-full"
-                          src="https://horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app/static/media/avatar11.1060b63041fdffa5f8ef.png"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div className="mt-28 flex flex-col items-center">
-                      <h4 className="text-xl font-bold text-navy-700 ">Adela Parkson</h4>
-                      <p className="text-base font-normal text-gray-600">Product Manager</p>
-                    </div>
-                    <div className="mt-6 mb-3 flex gap-14 md:!gap-14">
-                      <div className="flex flex-col items-center justify-center">
-                        <p className="text-2xl font-bold text-navy-700 ">17</p>
-                        <p className="text-sm font-normal text-gray-600">Posts</p>
-                      </div>
-                      <div className="flex flex-col items-center justify-center">
-                        <p className="text-2xl font-bold text-navy-700 ">9.7K</p>
-                        <p className="text-sm font-normal text-gray-600">Followers</p>
-                      </div>
-                      <div className="flex flex-col items-center justify-center">
-                        <p className="text-2xl font-bold text-navy-700 ">434</p>
-                        <p className="text-sm font-normal text-gray-600">Following</p>
-                      </div>
+      {loading ? (
+        <></>
+      ) : (
+        <Animation className="h-full w-full">
+          <section className="">
+            <div className="h-[90px] bg-gradient-to-r from-red-500 to-red-800 ">
+              <div className="py-8 px-[5%] md:px-[10%]">
+                <div className="flex flex-col gap-y-4">
+                  <div className="flex flex-row gap-x-1">
+                    <div className="font-normal text-md md:text-lg text-white">
+                      {mainsection.judul_path}
                     </div>
                   </div>
                 </div>
               </div>
-              {/* <div className="flex flex-col gap-5 justify start items-start mx-9 lg:mt-10">
+            </div>
+            <div className="h-full">
+              <div className="text-center p-8 lg:px-52 lg:p-10 lg:mt-9">
+                <p className="font-semibold text-2xl mb-5">{mainsection.judul_utama}</p>
+                <p className="font-normal text-lg">{mainsection.deskripsi}</p>
+              </div>
+              <div className="flex flex-row flex-wrap gap-8 justify-center ">
+                {listcontact.map((item, index) => (
+                  <ItemCard
+                    key={item.id}
+                    itemprofile={`${imageurl}${item.attributes.profile_picture.data.attributes.url}`}
+                    itemnama={item.attributes.nama}
+                    itememail={item.attributes.email}
+                  />
+                ))}
+                {/* <div className="flex flex-col gap-5 justify start items-start mx-9 lg:mt-10">
                 <div className="">
                   <div className="text-sm font-light md:text-lg">TAKE THE LEAD</div>
                   <div className="text-lg font-medium md:text-2xl">Reach out to our COO</div>
@@ -118,13 +114,34 @@ export default function Test() {
                   </div>
                 </div>
               </div> */}
+              </div>
+              <div className="px-12 lg:px-36 mt-20">
+                <motion.div
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ ease: "easeInOut", duration: 0.75 }}
+                >
+                  <div className="flex items-center   ">
+                    <Marquee autoFill={true} gradient={true} gradientWidth={50}>
+                      {sectionclient.map((item) => (
+                        <img
+                          key={item.id}
+                          src={`${imageurl}${item.attributes.logo_client.data.attributes.url}`}
+                          alt=""
+                          className="h-16 w-18 md:h-26 md:w-30 object-scale-up rounded-2xl md-1 md:mx-3"
+                        />
+                      ))}
+                    </Marquee>
+                  </div>
+                </motion.div>
+              </div>
             </div>
+          </section>
+          <div className="mt-[4rem] md:mt-[2%]">
+            <Footer1 />
           </div>
-        </section>
-        <div className="mt-[14%]">
-          <Footer1 />
-        </div>
-      </Animation>
+        </Animation>
+      )}
     </div>
   );
 }

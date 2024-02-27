@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import VisibleComponent from "../Visible";
 
-const OurProduct = ({ gambar, perusahaan, deskripsi, kalimat }) => {
+const OurProduct = ({ text, desc, listfitur, image, index }) => {
   const imageurl = process.env.NEXT_PUBLIC_IMG_URL;
   const { ref, isVisible } = VisibleComponent();
 
@@ -30,26 +30,20 @@ const OurProduct = ({ gambar, perusahaan, deskripsi, kalimat }) => {
             <div className="h-[46px] w-[3px] bg-gray-800 absolute -start-[17px] top-[124px] rounded-s-lg"></div>
             <div className="h-[46px] w-[3px] bg-gray-800 absolute -start-[17px] top-[178px] rounded-s-lg"></div>
             <div className="h-[64px] w-[3px] bg-gray-800 absolute -end-[17px] top-[142px] rounded-e-lg"></div>
-            <div className="rounded-[2rem] overflow-hidden w-[272px] h-[472px] bg-white dark:bg-gray-800">
-              {/* <img src="../../../mockup.png" className=" w-[272px] h-[572px]" alt="" /> */}
+            <div className="rounded-[2rem] overflow-hidden w-[272px] h-[472px] bg-white ">
+              <img src={image} className=" w-[272px] h-[472px]" alt="" />
               {/* <img
                 src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/mockup-2-dark.png"
-                className="hidden dark:block w-[222px] h-[472px]"
+                className="hidden dark:block w-[272px] h-[472px]"
                 alt=""
               /> */}
             </div>
           </div>
         </div>
       </div>
-      <div className={` md:w-full md:mt-16 md:me-24`}>
-        <h2 className="text-3xl font-bold text-gray-800 items-center flex py-4">Our Product</h2>
-        <p className="text-lg text-gray-700 md:mb-6 mb-8 text-justify ">
-          Code.id offers product such as Activo that enables organizations to efficiently monitor,
-          evaluate, and maintain their fixed assets, ensuring optimal utilization and reducing
-          depreciation costs and Klaim that offers a seamless platform for processing and managing
-          claims. These solutions exemplify our commitment to innovative software solutions for
-          businesses.
-        </p>
+      <div className={`md:w-full md:mt-16 md:me-24`}>
+        <h2 className="text-3xl font-bold text-gray-800 items-center flex py-4">{text}</h2>
+        <p className="text-lg text-gray-700 md:mb-6 mb-8 text-justify ">{desc}</p>
         {/* <div className="flex flex-col text-lg md:flex-row md:gap-x-10 md:grid md:grid-cols-2">
           <div className="">
             <FontAwesomeIcon icon={faUserGroup} className="text-3xl text-red-500 py-1" />
@@ -67,14 +61,15 @@ const OurProduct = ({ gambar, perusahaan, deskripsi, kalimat }) => {
           </div>
         </div> */}
         <ul className="grid list-none grid-cols-1 md:grid-cols-2 gap-y-2">
-          <li className="flex gap-x-2 ">
+          {listfitur}
+          {/* <li className="flex gap-x-2 ">
             <p className="md:text-md lg:text-lg text-xs font-light self-baseline">
               <FontAwesomeIcon icon={faCheckCircle} className=" text-green-500 " />
             </p>
             <p className="md:text-md lg:text-lg text-xs font-light self-baseline">
               Pantau nomor antrian di smartphone, mengurangi beban ruang tunggu.
             </p>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>

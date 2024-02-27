@@ -92,7 +92,11 @@ export default function CustomDev() {
                           {listservice.data.map((item, index) => (
                             <ItemCustom
                               key={item.id}
-                              gambarservice={`${imageurl}${item.attributes.icon_service.data.attributes.url}`}
+                              gambarservice={
+                                item.attributes.icon_service.data
+                                  ? `${imageurl}${item.attributes.icon_service.data.attributes.url}`
+                                  : "../../../noimg.svg"
+                              }
                               service={item.attributes.judul_service}
                               descservice={item.attributes.deskripsi_service}
                               listservice={item.attributes.list_service_details.data.map(

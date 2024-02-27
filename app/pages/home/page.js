@@ -15,16 +15,13 @@ import { motion } from "framer-motion";
 import VisibleComponent from "../../component/Visible";
 import HeroSection from "../../component/Hero";
 import OurProduct from "../../component/OurProduct";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 
 export default function Landing() {
   const url = process.env.NEXT_PUBLIC_API_URL;
   const imageurl = process.env.NEXT_PUBLIC_IMG_URL;
-  const [fitur, setFitur] = useState(null);
-  const [clientlogo, setClientlogo] = useState(null);
-  const [hero, setHero] = useState(null);
-  const [bisnis, setBisnis] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [homedata, setHomedata] = useState(null);
 
   const [sectionbisnis, setSectionbisnis] = useState(null);
   const [sectionhero, setSectionhero] = useState(null);
@@ -32,13 +29,14 @@ export default function Landing() {
   const [sectionproduk, setSectionproduk] = useState(null);
   const [sectionlistproduk, setSectionlistproduk] = useState(null);
   const [sectionlistbisnis, setSectionlistbisnis] = useState(null);
+  const [sectionkeunggulan, setSectionkeunggulan] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setTimeout(async () => {
           const response = await axios.get(
-            `${url}/home?populate[0]=hero_section.gambar_hero.media&populate[1]=list_logos.logo_client.media&populate[2]=produk_section&populate[3]=list_produks.gambar_produk.media&populate[4]=keunggulan_section.mockup_produk.media&populate[5]=bisnis_section&populate[6]=list_bidangs.icon_bisnis.media`
+            `${url}/home?populate[0]=hero_section.gambar_hero.media&populate[1]=list_logos.logo_client.media&populate[2]=produk_section&populate[3]=list_produks.gambar_produk.media&populate[4]=keunggulan_section.mockup_produk.media&populate[5]=keunggulan_section.list_fiturs&populate[6]=bisnis_section&populate[7]=list_bidangs.icon_bisnis.media`
           );
           setSectionbisnis(response.data.data.attributes.bisnis_section);
           setSectionhero(response.data.data.attributes.hero_section);
@@ -46,6 +44,7 @@ export default function Landing() {
           setSectionproduk(response.data.data.attributes.produk_section);
           setSectionlistproduk(response.data.data.attributes.list_produks);
           setSectionlistbisnis(response.data.data.attributes.list_bidangs);
+          setSectionkeunggulan(response.data.data.attributes.keunggulan_section);
           setLoading(false);
         }, 500);
       } catch (error) {
@@ -67,7 +66,11 @@ export default function Landing() {
         <Animation>
           <section className="flex justify-center ">
             <HeroSection
-              gambar={`${imageurl}${sectionhero.gambar_hero.data.attributes.url}`}
+              gambar={
+                sectionhero.gambar_hero.data
+                  ? `${imageurl}${sectionhero.gambar_hero.data.attributes.url}`
+                  : "../../noimg.svg"
+              }
               perusahaan={sectionhero.nama_pt}
               kalimat={sectionhero.kalimat_utama}
               deskripsi={sectionhero.kalimat_kedua}
@@ -120,7 +123,27 @@ export default function Landing() {
             </div>
           </section>
           <section className="bg-gray-100 ">
-            <OurProduct />
+            <OurProduct
+              text={sectionkeunggulan.judul}
+              desc={sectionkeunggulan.deskripsi}
+              image={
+                sectionkeunggulan.mockup_produk.data
+                  ? `${imageurl}${sectionkeunggulan.mockup_produk.data.attributes.url}`
+                  : "../../noimg.svg"
+              }
+              listfitur={sectionkeunggulan.list_fiturs.data.map((itemfitur) => (
+                <div key={itemfitur.id}>
+                  <li className="flex gap-x-2 ">
+                    <p className="md:text-md lg:text-lg text-xs font-light self-baseline">
+                      <FontAwesomeIcon icon={faCheckCircle} className=" text-green-500 " />
+                    </p>
+                    <p className="md:text-md lg:text-lg text-xs font-light self-baseline">
+                      {itemfitur.attributes.fitur}
+                    </p>
+                  </li>
+                </div>
+              ))}
+            />
           </section>
           <section className="py-16">
             <div className="row-span-2 text-center mb-10 ">
