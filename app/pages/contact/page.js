@@ -41,12 +41,11 @@ export default function Contact() {
   }, []);
 
   return (
-    <div>
-      <Navbar />
+    <>
       {loading ? (
         <></>
       ) : (
-        <Animation className="h-full w-full">
+        <Animation className="">
           <section className="">
             <div className="h-[90px] bg-gradient-to-r from-red-500 to-red-800 ">
               <div className="py-8 px-[5%] md:px-[10%]">
@@ -142,6 +141,6 @@ export default function Contact() {
           </div>
         </Animation>
       )}
-    </div>
+    </>
   );
 }

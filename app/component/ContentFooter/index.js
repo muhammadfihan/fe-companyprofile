@@ -132,7 +132,7 @@ const ContentFooter = () => {
           </section> */}
           <section className="bg-gray-200">
             <div className="grid grid-rows-3 md:grid-cols-2 lg:grid-cols-3 py-8 px-10 gap-y-6 md:px-20 lg:px-36 lg:grid-rows-1">
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3 self-center md:self-start">
                 <div className="grid grid-cols-1">
                   <img
                     className="w-[auto] h-[50px]"

@@ -11,11 +11,14 @@ import lunr from "lunr";
 const FloatingActionButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const url = process.env.NEXT_PUBLIC_API_URL;
+  const imageurl = process.env.NEXT_PUBLIC_IMG_URL;
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [data, setData] = useState(null);
   const messagesEndRef = useRef(null);
   const [loading, setLoading] = useState(true);
+
+  const [customchatbot, setCustom] = useState(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -26,6 +29,11 @@ const FloatingActionButton = () => {
       try {
         const response = await axios.get(`${url}/chatbots`);
         setData(response.data.data);
+
+        const response2 = await axios.get(
+          `${url}/custom-chatbot?populate[0]=main_section.avatar.media&populate[1]=jawaban_bot&populate[2]=jawaban_salah`
+        );
+        setCustom(response2.data.data.attributes);
 
         setLoading(false);
       } catch (error) {
@@ -128,35 +136,57 @@ const FloatingActionButton = () => {
                   <Popover.Panel className="absolute bottom-20 md:bottom-20 right-0 md:right-0 mt-3 w-80 md:w-screen max-w-sm transform sm:px-0 lg:max-w-md">
                     <div className=" bg-white shadow-md rounded-lg ">
                       <div className="p-4 border-b bg-red-500 text-white rounded-t-lg flex justify-between items-center">
-                        <p className="text-lg font-semibold">Tanyakan Pada Kami</p>
-                        <button className="text-gray-300 hover:text-gray-400 focus:outline-none focus:text-gray-400 me-2">
-                          <img src="../../../wa.svg" alt="" className="h-7 w-7" />
-                        </button>
+                        <p className="text-lg font-semibold">
+                          {customchatbot.main_section.header_text
+                            ? `${customchatbot.main_section.header_text}`
+                            : "Tanyakan Pada Kami"}
+                        </p>
+                        <a
+                          href={
+                            customchatbot.main_section.link_whatsapp
+                              ? `${customchatbot.main_section.link_whatsapp}`
+                              : "/pages/contact"
+                          }
+                        >
+                          {" "}
+                          <button className="text-gray-300 hover:text-gray-400 focus:outline-none focus:text-gray-400 me-2">
+                            <img src="../../../wa.svg" alt="" className="h-7 w-7" />
+                          </button>
+                        </a>
                       </div>
                       <div>
                         <div className="bg-[url(/bgchat.png)] bg-center bg-cover">
-                          <div className="cp-4 h-80  overflow-y-auto p-4">
+                          <div className="cp-4 h-80 no-scrollbar  overflow-y-auto p-4">
                             <div className="mb-3 flex items-start gap-2.5 animate-fade-right animate-once animate-duration-300 animate-ease-in">
                               <img
                                 className="w-8 h-8 rounded-full object-cover"
-                                src="../../logo.png"
+                                src={
+                                  customchatbot.main_section.avatar.data
+                                    ? `${imageurl}${customchatbot.main_section.avatar.data.attributes.url}`
+                                    : "../../../noimg.svg"
+                                }
                                 alt="Nakula Sadewa"
                               />
                               <div className="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl ">
                                 <div className="flex items-center space-x-2 rtl:space-x-reverse">
                                   <span className="text-sm font-semibold text-gray-900 ">
-                                    Nakula Sadewa
+                                    {customchatbot.main_section.username
+                                      ? `${customchatbot.main_section.username}`
+                                      : "Default Admin"}
                                   </span>
                                   <span className="text-sm font-normal text-gray-500 ">
                                     {getCurrentTime()}
                                   </span>
                                 </div>
                                 <p className="text-sm font-normal py-2.5 text-gray-900 ">
-                                  Selamat Datang Di PT Nakula Sadewa, Kami siap membantu anda,
-                                  silahkan konsultasikan pada kami
+                                  {customchatbot.jawaban_bot.isi_text
+                                    ? `${customchatbot.jawaban_bot.isi_text}`
+                                    : "Ini adalah template default isi chatbot pertama kali"}
                                 </p>
                                 <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
-                                  Admin Assistant
+                                  {customchatbot.main_section.nama_bot
+                                    ? `${customchatbot.main_section.nama_bot}`
+                                    : "Bot Default"}
                                 </span>
                               </div>
                             </div>
@@ -177,13 +207,19 @@ const FloatingActionButton = () => {
                                   <div className="mb-3 flex items-start gap-2.5 animate-fade-up animate-once animate-duration-300 animate-ease-in">
                                     <img
                                       className="w-8 h-8 rounded-full object-cover"
-                                      src="../../logo.png"
+                                      src={
+                                        customchatbot.main_section.avatar.data
+                                          ? `${imageurl}${customchatbot.main_section.avatar.data.attributes.url}`
+                                          : "../../../noimg.svg"
+                                      }
                                       alt="Nakula Sadewa"
                                     />
                                     <div className="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl ">
                                       <div className="flex items-center space-x-2 rtl:space-x-reverse">
                                         <span className="text-sm font-semibold text-gray-900 ">
-                                          Nakula Sadewa
+                                          {customchatbot.main_section.username
+                                            ? `${customchatbot.main_section.username}`
+                                            : "Default Admin"}
                                         </span>
                                         <span className="text-sm font-normal text-gray-500 ">
                                           {getCurrentTime()}
@@ -191,17 +227,24 @@ const FloatingActionButton = () => {
                                       </div>
                                       {message.content == null ? (
                                         <span className="text-sm font-normal py-2.5 text-gray-900 ">
-                                          <p>
-                                            Mohon maaf, kami tidak memiliki informasi yang Anda
-                                            cari. Silakan hubungi admin kami melalui WhatsApp
-                                            melalui link dibawah untuk bantuan lebih lanjut
+                                          <p className="text-sm font-normal py-2.5 text-gray-900 ">
+                                            {customchatbot.jawaban_salah.isi_noanswer
+                                              ? `${customchatbot.jawaban_salah.isi_noanswer}`
+                                              : "Maaf kami tidak memiliki informasi dari pertanyaan anda"}
                                           </p>
-                                          <button
-                                            href=""
-                                            className=" mt-2 text-xs font-semibold text-red-500"
+                                          <a
+                                            href={
+                                              customchatbot.jawaban_salah.link_kontak
+                                                ? `${customchatbot.jawaban_salah.link_kontak}`
+                                                : "/pages/contact"
+                                            }
                                           >
-                                            Hubungi Kami
-                                          </button>
+                                            <button className=" text-sm font-semibold text-red-500">
+                                              {customchatbot.jawaban_salah.kontak
+                                                ? `${customchatbot.jawaban_salah.kontak}`
+                                                : "Klik disini"}
+                                            </button>
+                                          </a>
                                         </span>
                                       ) : (
                                         <p className="text-sm font-normal py-2.5 text-gray-900 ">
@@ -210,7 +253,9 @@ const FloatingActionButton = () => {
                                       )}
 
                                       <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
-                                        Admin Assistant
+                                        {customchatbot.main_section.nama_bot
+                                          ? `${customchatbot.main_section.nama_bot}`
+                                          : "Bot Default"}
                                       </span>
                                     </div>
                                   </div>

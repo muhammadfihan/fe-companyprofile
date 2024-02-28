@@ -20,7 +20,7 @@ const HeroSection = ({ gambar, perusahaan, deskripsi, kalimat }) => {
     >
       <section
         style={{ backgroundImage: `url(${gambar})` }}
-        className="bg-cover bg-center bg-gray-500 bg-blend-multiply"
+        className="bg-cover bg-center bg-gray-500 bg-blend-multiply max-h-screen"
       >
         <div className="px-4 mx-auto max-w-screen-xl text-center py-16 lg:py-20">
           <a

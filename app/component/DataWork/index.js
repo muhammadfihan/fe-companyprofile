@@ -55,6 +55,7 @@ const ItemWork = ({ gambarporto, judulporto, perusahaan, index, slug }) => {
             <p className="mb-3 font-normal text-gray-700 line-clamp-1">{judulporto}</p>
             <Link
               href={`/pages/our-work/${slug}`}
+              target="_blank"
               className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-700 focus:outline-none  "
             >
               Read more

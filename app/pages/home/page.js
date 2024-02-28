@@ -56,8 +56,7 @@ export default function Landing() {
   }, []);
 
   return (
-    <div className="h-full">
-      <Navbar />
+    <div className="h-full ">
       {loading ? (
         <div className="flex py-56 md:py-52 justify-center items-center self-center ">
           <img src="../../logo.png" className="size-24 mt-10 object-cover animate-pulse" />
@@ -107,7 +106,7 @@ export default function Landing() {
                   {sectionproduk.subjudul}
                 </h2>
               </div>
-              <div className="min-h-screen flex items-center justify-center mb-20">
+              <div className=" flex items-center justify-center mb-20">
                 <div className="grid grid-cols-1 gap-4">
                   {sectionlistproduk.data.map((item, index) => (
                     <ItemSolution
@@ -156,7 +155,13 @@ export default function Landing() {
             </div>
             <div className="md:flex md:flex-row md:justify-center">
               <div className="min-h-0 items-center justify-center mb-8 mt-4 ">
-                <div className="flex flex-wrap-reverse justify-center gap-4 px-[10vw]">
+                <div
+                  className={`flex flex-wrap-reverse justify-center gap-4 max-w-[72rem] ${
+                    sectionlistbisnis.data.length == 4
+                      ? "px-[2rem] md:px-[10rem]"
+                      : "px-[2rem] md:px-[1rem]"
+                  }`}
+                >
                   {sectionlistbisnis.data.map((item, index) => (
                     <div key={item.id} className="w-72 flex-auto bg-transparant min-h-0 ">
                       {item.attributes.icon_bisnis.data == null ? (

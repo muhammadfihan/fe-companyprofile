@@ -5,6 +5,7 @@ import Image from "next/image";
 import ContentFooter from "../ContentFooter";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const Footer2 = () => {
   const url = process.env.NEXT_PUBLIC_API_URL;
@@ -52,9 +53,11 @@ const Footer2 = () => {
                       {isifooter.judul}
                     </h1>
                     <p className="text-sm text-white font-light md:text-lg">{isifooter.subjudul}</p>
-                    <button className="bg-red-500 mt-3 text-white text-xs p-1 px-10 rounded-full md:text-lg mx-8 ">
-                      Kirim Pesan
-                    </button>
+                    <Link href="/pages/contact">
+                      <button className="bg-red-500 mt-3 text-white text-xs p-1 px-10 rounded-full md:text-lg mx-8 ">
+                        Kirim Pesan
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>

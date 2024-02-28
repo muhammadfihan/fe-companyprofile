@@ -3,6 +3,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import ContetFooter from "../ContentFooter";
+import AlertModal from "../Modal";
 
 const Footer1 = () => {
   const url = process.env.NEXT_PUBLIC_API_URL;
@@ -14,6 +15,62 @@ const Footer1 = () => {
   const [kontak, setKontak] = useState(null);
   const [karir, setKarir] = useState(null);
   const [alamat, setAlamat] = useState(null);
+
+  const [showmodal, setModal] = useState(false);
+
+  const [postData, setPostData] = useState({
+    nama: "",
+    email: "",
+    nohp: "",
+    perusahaan: "",
+    pesan: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setPostData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formattedData = {
+      data: postData,
+    };
+    try {
+      const response = await fetch(`${url}/pesan-customers`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formattedData),
+      });
+
+      if (response.ok) {
+        console.log("Post successful!");
+        setPostData({
+          // Reset formulir setelah berhasil menambahkan data
+          nama: "",
+          email: "",
+          nohp: "",
+          perusahaan: "",
+          pesan: "",
+        });
+        setModal(true);
+        // Lakukan sesuatu setelah sukses menambahkan data
+      } else {
+        console.error("Failed to add post");
+      }
+    } catch (error) {
+      console.error("Error adding post:", error);
+    }
+  };
+
+  function closeModal() {
+    setModal(false);
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,6 +101,7 @@ const Footer1 = () => {
         <></>
       ) : (
         <div>
+          <AlertModal isShow={showmodal} close={closeModal} />;
           <section className="w-full">
             <div className="grid grid-rows-2 relative">
               <div className="h-64 bg-white"></div>
@@ -71,18 +129,26 @@ const Footer1 = () => {
                           <div className="grid grid-cols-1 gap-6 ">
                             <div className="md:max-w-xl max-w-md mx-auto mt-10 md:mt-4 md:p-6 bg-transparant  w-screen md:px-16 sm:px-0 xl:px-20">
                               <div className="backdrop-blur-sm bg-white/20 rounded-lg mt-2">
-                                <form className="w-full max-w-lg p-6">
+                                <form className="w-full max-w-lg p-6" onSubmit={handleSubmit}>
                                   <div className="flex flex-wrap -mx-3 mb-6">
                                     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                       <input
                                         className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                         type="text"
+                                        name="nama"
+                                        onChange={handleInputChange}
+                                        value={postData.nama}
+                                        required
                                         placeholder="Nama"
                                       />
                                     </div>
                                     <div className="w-full md:w-1/2 px-3">
                                       <input
                                         className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                        name="email"
+                                        onChange={handleInputChange}
+                                        value={postData.email}
+                                        required
                                         type="text"
                                         placeholder="Email"
                                       />
@@ -93,6 +159,10 @@ const Footer1 = () => {
                                       <input
                                         className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                         type="text"
+                                        name="nohp"
+                                        onChange={handleInputChange}
+                                        value={postData.nohp}
+                                        required
                                         placeholder="No Handphone"
                                       />
                                     </div>
@@ -100,6 +170,9 @@ const Footer1 = () => {
                                       <input
                                         className="appearance-none block w-full bg-gray-200 text-gray-700  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                         type="text"
+                                        name="perusahaan"
+                                        onChange={handleInputChange}
+                                        value={postData.perusahaan}
                                         placeholder="Perusahaan"
                                       />
                                     </div>
@@ -109,7 +182,11 @@ const Footer1 = () => {
                                       <textarea
                                         className="appearance-none block w-full bg-gray-200 text-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                         type="text"
+                                        name="pesan"
+                                        onChange={handleInputChange}
+                                        value={postData.pesan}
                                         placeholder="Pesan"
+                                        required
                                       ></textarea>
                                     </div>
                                   </div>
@@ -131,7 +208,9 @@ const Footer1 = () => {
               </div>
             </div>
           </section>
-          <ContetFooter />
+          <div className="mt-6 md:mt-0">
+            <ContetFooter />
+          </div>
         </div>
       )}
     </div>

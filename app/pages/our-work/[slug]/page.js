@@ -42,7 +42,6 @@ export default function DetailPage() {
 
   return (
     <div>
-      <Navbar />
       {loading ? (
         <div></div>
       ) : (

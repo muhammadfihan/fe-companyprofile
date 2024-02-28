@@ -3,7 +3,9 @@ import "./globals.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 // import FloatingActionButton from "./component/FloatingChat";
-import Layout from "./component/FloatingChat/layout";
+// import Layout from "./component/FloatingChat/layout";
+import Navbar from "./component/Navbar";
+import Layout from "./component/layout";
 
 config.autoAddCss = false;
 const inter = Montserrat({ weights: 200, subsets: ["latin"] });
@@ -17,6 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        {/* <Navbar /> */}
         <Layout>{children}</Layout>
       </body>
     </html>

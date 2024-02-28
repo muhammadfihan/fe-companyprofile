@@ -48,7 +48,6 @@ export default function DevService() {
 
   return (
     <div>
-      <Navbar />
       {loading ? (
         <></>
       ) : (

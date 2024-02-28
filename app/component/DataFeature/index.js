@@ -23,7 +23,7 @@ const ItemFeature = ({ gambar, bidangbisnis, penjelas, index }) => {
         />
       </div>
       <p className="text-md font-medium mt-2 mb-2 lg:text-xl">{bidangbisnis}</p>
-      <p className="text-sm font-light md:text-[1.1vw] leading-6">{penjelas}</p>
+      <p className="text-sm font-light  leading-6">{penjelas}</p>
     </div>
   );
 };

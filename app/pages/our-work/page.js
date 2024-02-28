@@ -63,7 +63,6 @@ export default function Work() {
 
   return (
     <div>
-      <Navbar />
       {loading ? (
         <></>
       ) : (

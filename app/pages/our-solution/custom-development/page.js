@@ -46,7 +46,6 @@ export default function CustomDev() {
 
   return (
     <div>
-      <Navbar />
       {loading ? (
         <></>
       ) : (
@@ -84,7 +83,7 @@ export default function CustomDev() {
                     </div>
                   </div>
                   <div>
-                    <div className="min-h-screen flex items-center justify-center mb-20">
+                    <div className=" flex items-center justify-center mb-20">
                       {loading ? (
                         <p>Loading</p>
                       ) : (
