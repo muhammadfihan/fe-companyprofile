@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee, faStar } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import VisibleComponent from "../Visible";
+import Image from "next/image";
 
 const ItemWork = ({ gambarporto, judulporto, perusahaan, index, slug }) => {
   const { ref, isVisible } = VisibleComponent();
@@ -13,40 +14,24 @@ const ItemWork = ({ gambarporto, judulporto, perusahaan, index, slug }) => {
       ref={ref}
       className={`${
         isVisible
-          ? "animate-fade-down animate-once animate-duration-500 animate-delay-0 animate-ease-in"
+          ? "animate-fade-up animate-once animate-duration-500 animate-delay-0 animate-ease-in"
           : "opacity-0"
       } grid grid-cols-1 md:grid-cols-1 mb-4 p-2 `}
     >
-      {/* <div className="flex-row gap-x-4 sm:flex-col md:my-3">
-        <div className=" flex justify-center">
-          <img className=" w-[300px] object-cover" src={gambarporto} alt={`Image ${index + 1}`} />
-        </div>
-        <div className="">
-          <div className="flex flex-col gap-y-1 px-2 mt-2 sm:px-3 md:px-4 sm:mt-3 md:mt-4 lg:px-6">
-            <div className="text-xs font-semibold text-red-500 lg:text-lg ">{perusahaan}</div>
-            <div className="text-sm font-medium text-black lg:text-xl">{judulporto}</div>
-            <div>
-              <Link href={`/pages/our-work/${slug}`}>
-                <button className="w-full md:w-1/3 lg:w-1/2 sm:mt-4 text-center rounded-md border-[0.5px] border-red-500 hover:border-red-600 bg-white hover:bg-red-600">
-                  <h2 className="text-[9px] font-medium text-red-500 hover:text-white p-1 md:text-md md:p-1 lg:text-[15px]">
-                    See More
-                  </h2>
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div> */}
       <div className="flex justify-center">
-        <div className="size-[28rem] bg-white border border-gray-200 rounded-lg shadow place-items-center">
+        <div className=" bg-white border border-gray-200 rounded-lg shadow place-items-center ">
           <a className="flex justify-center p-2" href="#">
-            <img
+            <Image
               className="object-cover min-h-64 rounded-xl"
               src={gambarporto}
               alt={`Image ${index + 1}`}
+              width={500}
+              height={500}
+              style={{ width: "500", height: "500", objectFit: "cover" }}
+              priority={true}
             />
           </a>
-          <div className="p-5">
+          <div className="p-5 py-8">
             <a href="#">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
                 {perusahaan}

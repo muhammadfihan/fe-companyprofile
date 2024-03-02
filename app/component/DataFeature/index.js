@@ -3,6 +3,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee, faStar } from "@fortawesome/free-solid-svg-icons";
 import VisibleComponent from "../Visible";
+import Image from "next/image";
 
 const ItemFeature = ({ gambar, bidangbisnis, penjelas, index }) => {
   const { ref, isVisible } = VisibleComponent();
@@ -16,10 +17,13 @@ const ItemFeature = ({ gambar, bidangbisnis, penjelas, index }) => {
       } flex-auto border bg-white p-6 rounded-xl shadow-md h-full `}
     >
       <div className="flex justify-center md:justify-normal">
-        <img
+        <Image
           src={`${gambar}`}
           alt={`Image ${index + 1}`}
           className="size-32 md:size-36 object-scale-up p-3"
+          width={200}
+          height={200}
+          style={{ width: "200", height: "200", objectFit: "contain" }}
         />
       </div>
       <p className="text-md font-medium mt-2 mb-2 lg:text-xl">{bidangbisnis}</p>

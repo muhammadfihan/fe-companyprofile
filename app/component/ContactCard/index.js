@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faCoffee, faStar } from "@fortawesome/free-solid-svg-icons";
 import VisibleComponent from "../Visible";
+import Image from "next/image";
 
 const ItemCard = ({
   itemprofile,
@@ -19,10 +20,12 @@ const ItemCard = ({
           <div className="relative flex h-20 w-full justify-center rounded-xl bg-cover">
             <div className="absolute flex h-32 w-full justify-center rounded-xl bg-cover bg-gradient-to-r from-red-500 to-pink-700"></div>
             <div className="absolute -bottom-24 flex h-[100px] w-[100px] items-center justify-center rounded-full border-[4px] border-white bg-white ">
-              <img
-                className="h-full w-full rounded-full"
-                src={itemprofile ? `${itemprofile}` : "../../../logo.png"}
+              <Image
+                src={itemprofile}
                 alt=""
+                width={80}
+                height={80}
+                style={{ objectFit: "contain", width: "auto", height: "auto", borderRadius: "50%" }}
               />
             </div>
           </div>
@@ -32,13 +35,34 @@ const ItemCard = ({
           </div>
           <div className="mt-6 mb-3 flex gap-7 md:!gap-7">
             <button className="flex flex-col items-center justify-center transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 ">
-              <img className="size-8" src="../../facebook.svg" alt="" />
+              <Image
+                className="size-8"
+                src="/facebook.svg"
+                alt=""
+                width={100}
+                height={100}
+                style={{ width: "35px", height: "35px" }}
+              />
             </button>
             <button className="flex flex-col items-center justify-center transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 ">
-              <img className="size-8" src="../../instagram.svg" alt="" />
+              <Image
+                className="size-8"
+                src="/instagram.svg"
+                alt=""
+                width={100}
+                height={100}
+                style={{ width: "35px", height: "35px" }}
+              />
             </button>
             <button className="flex flex-col items-center justify-center transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 ">
-              <img className="size-8" src="../../twitter.svg" alt="" />
+              <Image
+                className="size-8"
+                src="/twitter.svg"
+                alt=""
+                width={100}
+                height={100}
+                style={{ width: "35px", height: "35px" }}
+              />
             </button>
           </div>
           <div className="mt-3 mb-2 w-full">

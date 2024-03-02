@@ -11,6 +11,7 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import Footer2 from "../../../component/Footer2";
 import Animation from "../../../component/Animation";
+import Image from "next/image";
 
 export default function DetailPage() {
   const [detail, setData] = useState(null);
@@ -74,15 +75,19 @@ export default function DetailPage() {
                     </div>
                   </div>
                 </div>
-                <div className="-mt-6">
-                  <img
+                <div className="-mt-6 ">
+                  <Image
                     className="w-full object-scale-up rounded-xl md:w-full md:h-96 "
                     src={
                       detail.attributes.gambar_utama.data
                         ? `${imageurl}${detail.attributes.gambar_utama.data.attributes.url}`
-                        : "../../../noimg.svg"
+                        : "/noimg.svg"
                     }
                     alt=""
+                    priority={false}
+                    width={400}
+                    height={400}
+                    style={{ width: "100rem", height: "26rem", objectFit: "cover" }}
                   />
                 </div>
 
@@ -93,11 +98,13 @@ export default function DetailPage() {
                   <div className="">
                     <Marquee autoFill={true} gradientWidth={20}>
                       {detail.attributes.galeri_portofolio.data.map((item) => (
-                        <img
+                        <Image
                           key={item.id}
                           src={`${imageurl}${item.attributes.url}`}
                           alt=""
                           className="mx-3 size-64 object-cover"
+                          width={300}
+                          height={300}
                         />
                       ))}
                     </Marquee>

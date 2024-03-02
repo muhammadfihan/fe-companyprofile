@@ -8,11 +8,13 @@ import ItemPosition1 from "../../component/DataPosition";
 import Navbar from "../../component/Navbar";
 import Animation from "../../component/Animation";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function Career() {
   const url = process.env.NEXT_PUBLIC_API_URL;
   const imageurl = process.env.NEXT_PUBLIC_IMG_URL;
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   const [mainsection, setMain] = useState(null);
   const [sectionkarir, setSectionkarir] = useState(null);
@@ -27,18 +29,16 @@ export default function Career() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setTimeout(async () => {
-          const response = await axios.get(
-            `${url}/karir?populate[0]=main_section&populate[1]=carier_section&populate[2]=list_karirs.icon.media`
-          );
-          setMain(response.data.data.attributes.main_section);
-          setSectionkarir(response.data.data.attributes.carier_section);
-          setList(response.data.data.attributes.list_karirs.data);
-          setLoading(false);
-        }, 300);
-      } catch (error) {
-        console.error("Error fetching API data:", error.message);
+        const response = await axios.get(
+          `${url}/karir?populate[0]=main_section&populate[1]=carier_section&populate[2]=list_karirs.icon.media`
+        );
+        setMain(response.data.data.attributes.main_section);
+        setSectionkarir(response.data.data.attributes.carier_section);
+        setList(response.data.data.attributes.list_karirs.data);
         setLoading(false);
+      } catch (error) {
+        console.clear();
+        return router.push("/error");
       }
     };
     fetchData();
@@ -112,7 +112,7 @@ export default function Career() {
                       </div>
                     </div>
                   </div>
-                  <div className="font-light text-sm md:text-lg text-white text-justify">
+                  <div className="font-light text-sm md:text-md lg:text-lg text-white text-justify">
                     {mainsection.deskripsi}
                   </div>
                 </div>

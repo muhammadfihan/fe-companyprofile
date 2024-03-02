@@ -3,6 +3,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faCoffee, faStar } from "@fortawesome/free-solid-svg-icons";
 import VisibleComponent from "../Visible";
+import Image from "next/image";
 
 const ItemCustom = ({ gambarservice, service, descservice, index, listservice }) => {
   const isEvenRow = index % 2 === 0;
@@ -25,11 +26,15 @@ const ItemCustom = ({ gambarservice, service, descservice, index, listservice })
             } grid-cols-1 md:grid-cols-2 md:flex-row-reverse`
       }`}
     >
-      <img
+      <Image
         src={gambarservice}
         alt={`Image ${index + 1}`}
+        width={300}
+        height={300}
         className="size-52 sm:size-60 md:size-72 lg:size-80 object-scale-up rounded-2xl"
+        style={{ objectPosition: "start", width: "300", height: "300" }}
       />
+
       <div className="p-4 text-start">
         <h2 className="text-lg bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-gray-800 font-medium  md:text-4xl md:font-bold">
           {service}
@@ -40,13 +45,6 @@ const ItemCustom = ({ gambarservice, service, descservice, index, listservice })
         <div className={`mt-2 ${!listservice ? "hidden" : ""}`}>
           <ul className="grid list-none grid-cols-1 md:grid-cols-2 gap-y-2">{listservice}</ul>
         </div>
-        <button className="flex flex-row mt-3 md:mt-10 md:gap-x-4">
-          <div className="text-center rounded-full border bg-red-600">
-            <h2 className="md:text-md lg:text-lg text-xs p-1 mx-3 text-white font-light ">
-              See more
-            </h2>
-          </div>
-        </button>
       </div>
     </div>
   );

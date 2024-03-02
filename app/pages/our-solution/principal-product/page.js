@@ -8,11 +8,14 @@ import Footer2 from "../../../component/Footer2";
 import ItemCommercials from "../../../component/Commercials";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function Test() {
   const url = process.env.NEXT_PUBLIC_API_URL;
   const imageurl = process.env.NEXT_PUBLIC_IMG_URL;
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   const [mainsection, setMain] = useState(null);
   const [principalsection, setPrincipal] = useState(null);
@@ -39,7 +42,8 @@ export default function Test() {
         setListcommercial(response.data.data.attributes.commercials_section.list_commercials.data);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching API data:", error.message);
+        console.clear();
+        return router.push("/error");
       }
     };
 
@@ -67,12 +71,14 @@ export default function Test() {
         <Animation>
           <section className="h-full md:py-5 relative">
             <div className="flex flex-wrap flex-col gap-y-6 sm:flex sm:flex-col sm:gap-y-8 px-4 py-1 relative z-20 md:px-16 xl:px-44 md:grid md:grid-cols-2 md:gap-x-14 md:mt-10">
-              <div className="flex flex-col gap-y-2 md:gap-y-5 sm:flex-col">
+              <div className="flex flex-col gap-y-2 md:gap-y-5 sm:flex-col animate-delay-300 animate-fade-right animate-once animate-duration-[800ms] animate-ease-in mt-7">
                 <div className="bg-gray-100 text-xs md:w-80 font-semibold self-start p-2 rounded-lg md:text-md">
                   {mainsection.judul_path}
                 </div>
-                <p className="text-lg font-semibold md:text-2xl">{mainsection.subjudul}</p>
-                <p className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-gray-800 md:text-4xl">
+                <p className="text-lg font-semibold md:text-2xl text-white lg:text-gray-800">
+                  {mainsection.subjudul}
+                </p>
+                <p className="text-2xl font-semibold text-white lg:bg-clip-text lg:text-transparent lg:bg-gradient-to-r lg:from-red-600 lg:to-gray-800 md:text-4xl">
                   {mainsection.judul_utama}
                 </p>
                 <div className="bg-white rounded-xl drop-shadow-2xl p-5 md:p-10 mb-3 lg:mt-5">
@@ -90,29 +96,32 @@ export default function Test() {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col lg:flex-wrap gap-y-5 md:flex-col-reverse md:flex-auto md:self-start flex-auto lg:self-end">
-                <div className="">
-                  <img
+              <div className="h-full flex flex-col gap-y-5 md:flex-col-reverse md:flex-auto md:self-start flex-auto lg:self-end animate-delay-500 animate-fade-left animate-once animate-duration-[800ms] animate-ease-in">
+                <div className="h-full">
+                  <Image
                     src={
                       mainsection.gambar.data
                         ? `${imageurl}${mainsection.gambar.data.attributes.url}`
                         : "../../../noimg.svg"
                     }
-                    className="object-cover rounded-xl shadow-md lg:h-[23vw]"
+                    className="object-cover rounded-xl shadow-md md:h-[23.1rem]"
                     alt=""
+                    width={500}
+                    height={500}
+                    style={{ width: "1000px", height: "23.1rem", objectFit: "cover" }}
                   />
                 </div>
-                <div className="">
-                  <p>{mainsection.kalimat_principal}</p>
+                <div className="h-full">
+                  <p className="md:text-white lg:text-gray-800">{mainsection.kalimat_principal}</p>
                   <button className="bg-red-500 py-2 px-5 text-sm font-normal text-white rounded-full mt-4">
                     Learn More
                   </button>
                 </div>
               </div>
             </div>
-            <div className="bg-red-500 h-48 md:h-80 absolute bottom-[100vw] md:bottom-0 w-full bg-gradient-to-r from-red-500 to-red-800 z-10"></div>
+            <div className="bg-red-500 h-48 md:h-80 absolute top-0 lg:top-96 w-full bg-gradient-to-r from-red-500 to-red-800 z-10"></div>
           </section>
-          <section className="h-full md:py-5 relative">
+          <section className="h-full md:py-5 relative lg:mt-6 xl:mt-10">
             <div className="md:px-16 xl:px-44 px-4 gap-y-2 md:gap-y-4 flex flex-col mt-7">
               <p className="text-lg md:text-xl font-semibold text-red-500">
                 {principalsection.subjudul}
@@ -121,7 +130,6 @@ export default function Test() {
               <p className="leading-7 text-justify">{principalsection.deskripsi}</p>
             </div>
             <div className="px-[4%] md:px-[5%]">
-              {/* <DataPosition data={data} itemsPerPage={8} /> */}
               <div className="flex flex-wrap justify-center">
                 {listprincipal.map((item, index) => (
                   <ItemPrincipal

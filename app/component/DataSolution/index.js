@@ -27,10 +27,13 @@ const ItemSolution = ({ gambarfitur, judulgambar, descjudul, index }) => {
             } grid-cols-1 md:grid-cols-2 md:flex-row-reverse`
       }`}
     >
-      <img
+      <Image
         src={`${imageurl}${gambarfitur}`}
         alt={`Image ${index + 1}`}
         className="size-52 sm:size-60 md:size-72 lg:size-96 object-contain rounded-2xl"
+        width={500}
+        height={500}
+        style={{ width: "100", height: "100", objectFit: "contain" }}
       />
       <div className="p-4 text-start">
         <h2 className="text-lg bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-gray-800 font-medium  md:text-4xl md:font-bold">

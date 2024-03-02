@@ -4,6 +4,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import ContetFooter from "../ContentFooter";
 import AlertModal from "../Modal";
+import Image from "next/image";
 
 const Footer1 = () => {
   const url = process.env.NEXT_PUBLIC_API_URL;
@@ -109,9 +110,12 @@ const Footer1 = () => {
               <div className="bg-transparant absolute  top-0 left-0 z-10 h-full w-full flex items-center justify-center md:px-8 lg:px-28">
                 <div className="flex justify-center ">
                   <div className="relative md:rounded-3xl overflow-hidden mt-4 md:mx-10">
-                    <img
+                    <Image
                       className="w-screen h-[550px] md:h-[420px] sm:w-[1200px] xl:w-screen object-cover brightness-custom"
                       src={`${imageurl}${mainfooter.gambar_footer.data.attributes.url}`}
+                      width={1000}
+                      height={1000}
+                      priority={true}
                       alt="Company Logo"
                     />
                   </div>

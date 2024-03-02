@@ -16,6 +16,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from "@heroicons/react/20/solid";
+import Image from "next/image";
 
 const navmenu = [
   {
@@ -72,12 +73,10 @@ export default function Navbar() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setTimeout(async () => {
-          const response = await axios.get(`${url}/nav-produk?populate=extend_produks`);
-          setProduk(response.data.data);
-          setList(response.data.data.attributes.extend_produks.data);
-          setLoading(false);
-        }, 100);
+        const response = await axios.get(`${url}/nav-produk?populate=extend_produks`);
+        setProduk(response.data.data);
+        setList(response.data.data.attributes.extend_produks.data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching API data:", error.message);
         setLoading(false);
@@ -99,7 +98,14 @@ export default function Navbar() {
             <div className="flex lg:flex-1">
               <a href="#" className="-m-1.5 focus:outline-none">
                 <span className="sr-only">Your Company</span>
-                <img className="h-[3.4rem] w-auto" src="../../../code.png" alt="" />
+                <Image
+                  className="h-[3.4rem] w-auto"
+                  src="/code.png"
+                  alt=""
+                  width={300}
+                  height={300}
+                  priority={true}
+                />
               </a>
             </div>
             <div className="flex lg:hidden">
@@ -114,7 +120,7 @@ export default function Navbar() {
             </div>
             <Popover.Group className="hidden lg:flex lg:gap-x-12">
               <Link
-                className={`text-md font-medium leading-6 text-gray-900 link ${
+                className={`text-md font-medium leading-6 text-gray-900 link hover:text-red-500 ${
                   pathname === "/" ? "text-red-500" : ""
                 }`}
                 href="/"
@@ -123,7 +129,7 @@ export default function Navbar() {
               </Link>
               <Popover className="relative">
                 <Popover.Button
-                  className={`flex outline-none items-center gap-x-1 text-md font-medium leading-6 text-gray-900  ${
+                  className={`flex outline-none items-center gap-x-1 text-md font-medium leading-6 text-gray-900 hover:text-red-500 ${
                     pathname === "/pages/our-solution/custom-development" ||
                     pathname === "/pages/our-solution/principal-product" ||
                     pathname === "/pages/our-solution/dev-service"
@@ -181,7 +187,7 @@ export default function Navbar() {
               </Popover>
 
               <Link
-                className={`text-md font-medium leading-6 text-gray-900 link ${
+                className={`text-md font-medium leading-6 text-gray-900 link hover:text-red-500 ${
                   pathname === "/pages/our-work" ? "text-red-500" : ""
                 }`}
                 href="/pages/our-work"
@@ -189,7 +195,7 @@ export default function Navbar() {
                 Portofolio
               </Link>
               <Link
-                className={`text-md font-medium leading-6 text-gray-900 link ${
+                className={`text-md font-medium leading-6 text-gray-900 link hover:text-red-500 ${
                   pathname === "/pages/career" ? "text-red-500" : ""
                 }`}
                 href="/pages/career"
@@ -198,7 +204,7 @@ export default function Navbar() {
               </Link>
 
               <Link
-                className={`text-md font-medium leading-6 text-gray-900 link ${
+                className={`text-md font-medium leading-6 text-gray-900 link hover:text-red-500 ${
                   pathname === "/pages/contact" ? "text-red-500" : ""
                 }`}
                 href="/pages/contact"
@@ -206,7 +212,7 @@ export default function Navbar() {
                 Hubungi Kami
               </Link>
               <Popover className={`${listproduk.length === 0 ? "hidden" : "relative"}`}>
-                <Popover.Button className="flex outline-none items-center gap-x-1 text-md font-medium leading-6 text-gray-900 ">
+                <Popover.Button className="flex outline-none items-center gap-x-1 text-md font-medium leading-6 text-gray-900 hover:text-red-500">
                   Produk
                 </Popover.Button>
 
@@ -287,7 +293,14 @@ export default function Navbar() {
               <div className="flex items-center justify-between">
                 <a href="#" className="-m-1.5 p-1.5">
                   <span className="sr-only">Your Company</span>
-                  <img className="h-8 w-auto" src="../../../code.png" alt="" />
+                  <Image
+                    className="h-8 w-auto"
+                    src="/code.png"
+                    alt=""
+                    width={300}
+                    height={300}
+                    priority={true}
+                  />
                 </a>
                 <button
                   type="button"

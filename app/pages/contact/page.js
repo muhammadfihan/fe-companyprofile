@@ -8,11 +8,14 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ItemCard from "../../component/ContactCard";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function Contact() {
   const url = process.env.NEXT_PUBLIC_API_URL;
   const imageurl = process.env.NEXT_PUBLIC_IMG_URL;
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   const [mainsection, setMain] = useState(null);
   const [listcontact, setList] = useState(null);
@@ -21,20 +24,18 @@ export default function Contact() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setTimeout(async () => {
-          const response = await axios.get(`${url}/list-logos?populate=*`);
-          setSectionclient(response.data.data);
+        const response = await axios.get(`${url}/list-logos?populate=*`);
+        setSectionclient(response.data.data);
 
-          const response2 = await axios.get(
-            `${url}/hubungi-kami?populate[0]=list_contacts.profile_picture.media`
-          );
-          setMain(response2.data.data.attributes);
-          setList(response2.data.data.attributes.list_contacts.data);
-          setLoading(false);
-        }, 300);
-      } catch (error) {
-        console.error("Error fetching API data:", error.message);
+        const response2 = await axios.get(
+          `${url}/hubungi-kami?populate[0]=list_contacts.profile_picture.media`
+        );
+        setMain(response2.data.data.attributes);
+        setList(response2.data.data.attributes.list_contacts.data);
         setLoading(false);
+      } catch (error) {
+        console.clear();
+        return router.push("/error");
       }
     };
     fetchData();
@@ -67,7 +68,11 @@ export default function Contact() {
                 {listcontact.map((item, index) => (
                   <ItemCard
                     key={item.id}
-                    itemprofile={`${imageurl}${item.attributes.profile_picture.data.attributes.url}`}
+                    itemprofile={
+                      item.attributes.profile_picture.data
+                        ? `${imageurl}${item.attributes.profile_picture.data.attributes.url}`
+                        : "/logo.png"
+                    }
                     itemnama={item.attributes.nama}
                     itememail={item.attributes.email}
                   />
@@ -123,11 +128,14 @@ export default function Contact() {
                   <div className="flex items-center   ">
                     <Marquee autoFill={true} gradient={true} gradientWidth={50}>
                       {sectionclient.map((item) => (
-                        <img
+                        <Image
                           key={item.id}
                           src={`${imageurl}${item.attributes.logo_client.data.attributes.url}`}
                           alt=""
-                          className="h-16 w-18 md:h-26 md:w-30 object-scale-up rounded-2xl md-1 md:mx-3"
+                          className="h-14 w-18 md:h-26 md:w-30 object-scale-up rounded-2xl md-1 md:mx-3"
+                          height={300}
+                          width={300}
+                          style={{ width: "auto", height: "auto" }}
                         />
                       ))}
                     </Marquee>

@@ -9,11 +9,14 @@ import axios from "axios";
 import Navbar from "../../../component/Navbar";
 import ItemCustom from "../../../component/DataCustomDev";
 import Animation from "../../../component/Animation";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function CustomDev() {
   const url = process.env.NEXT_PUBLIC_API_URL;
   const imageurl = process.env.NEXT_PUBLIC_IMG_URL;
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   const [mainsection, setMainsection] = useState(null);
   const [countsection, setCountsection] = useState(null);
@@ -24,21 +27,19 @@ export default function CustomDev() {
   useEffect(() => {
     async function fetchService() {
       try {
-        setTimeout(async () => {
-          const response = await axios.get(
-            `${url}/layanan-kami?populate[0]=main_section&populate[1]=count_section&populate[2]=service_section&populate[3]=list_services.icon_service.media&populate[4]=list_services.list_service_details&populate[5]=Metode_Pengembangan.icon_metodepengembangan.media`
-          );
-          setMainsection(response.data.data.attributes.main_section);
-          setCountsection(response.data.data.attributes.count_section);
-          setJudulsection(response.data.data.attributes.service_section);
-          setListservice(response.data.data.attributes.list_services);
-          setMetode(response.data.data.attributes.Metode_Pengembangan);
+        const response = await axios.get(
+          `${url}/layanan-kami?populate[0]=main_section&populate[1]=count_section&populate[2]=service_section&populate[3]=list_services.icon_service.media&populate[4]=list_services.list_service_details&populate[5]=Metode_Pengembangan.icon_metodepengembangan.media`
+        );
+        setMainsection(response.data.data.attributes.main_section);
+        setCountsection(response.data.data.attributes.count_section);
+        setJudulsection(response.data.data.attributes.service_section);
+        setListservice(response.data.data.attributes.list_services);
+        setMetode(response.data.data.attributes.Metode_Pengembangan);
 
-          setLoading(false);
-        }, 500);
-      } catch (error) {
-        console.error("Error fetching API data:", error.message);
         setLoading(false);
+      } catch (error) {
+        console.clear();
+        return router.push("/error");
       }
     }
     fetchService();
@@ -63,7 +64,7 @@ export default function CustomDev() {
                     <div className="font-semibold text-xl md:text-2xl text-white">
                       {mainsection.subjudul}
                     </div>
-                    <div className="font-bold text-2xl md:text-2xl lg:text-5xl text-white">
+                    <div className="font-bold text-2xl md:text-2xl lg:text-4xl text-white">
                       {mainsection.judul_utama}
                     </div>
                     <div className="font-normal text-sm md:text-lg text-white text-justify">
@@ -133,10 +134,13 @@ export default function CustomDev() {
                         {metode.deskripsi}
                       </div>
                       <div className="flex justify-center items-center text-center">
-                        <img
+                        <Image
                           src={`${imageurl}${metode.icon_metodepengembangan.data.attributes.url}`}
                           alt=""
                           className="size-52 sm:size-60 md:size-80 object-cover rounded-2xl text-center"
+                          width={500}
+                          height={500}
+                          style={{ width: "300px", height: "300px", objectFit: "cover" }}
                         />
                       </div>
                     </div>

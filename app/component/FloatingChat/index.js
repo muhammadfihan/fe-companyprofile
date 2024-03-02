@@ -7,6 +7,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import axios from "axios";
 import lunr from "lunr";
+import Image from "next/image";
 
 const FloatingActionButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -150,7 +151,14 @@ const FloatingActionButton = () => {
                         >
                           {" "}
                           <button className="text-gray-300 hover:text-gray-400 focus:outline-none focus:text-gray-400 me-2">
-                            <img src="../../../wa.svg" alt="" className="h-7 w-7" />
+                            <Image
+                              src="/wa.svg"
+                              alt=""
+                              className="h-7 w-7"
+                              width={100}
+                              height={100}
+                              style={{ width: "100", height: "100" }}
+                            />
                           </button>
                         </a>
                       </div>
@@ -158,12 +166,15 @@ const FloatingActionButton = () => {
                         <div className="bg-[url(/bgchat.png)] bg-center bg-cover">
                           <div className="cp-4 h-80 no-scrollbar  overflow-y-auto p-4">
                             <div className="mb-3 flex items-start gap-2.5 animate-fade-right animate-once animate-duration-300 animate-ease-in">
-                              <img
+                              <Image
                                 className="w-8 h-8 rounded-full object-cover"
+                                width={100}
+                                height={100}
+                                style={{ width: "100", height: "100", objectFit: "cover" }}
                                 src={
                                   customchatbot.main_section.avatar.data
                                     ? `${imageurl}${customchatbot.main_section.avatar.data.attributes.url}`
-                                    : "../../../noimg.svg"
+                                    : "/noimg.svg"
                                 }
                                 alt="Nakula Sadewa"
                               />
@@ -205,12 +216,15 @@ const FloatingActionButton = () => {
                                 )}
                                 {message.role === "assistant" && (
                                   <div className="mb-3 flex items-start gap-2.5 animate-fade-up animate-once animate-duration-300 animate-ease-in">
-                                    <img
+                                    <Image
                                       className="w-8 h-8 rounded-full object-cover"
+                                      width={100}
+                                      height={100}
+                                      style={{ width: "100", height: "100", objectFit: "cover" }}
                                       src={
                                         customchatbot.main_section.avatar.data
                                           ? `${imageurl}${customchatbot.main_section.avatar.data.attributes.url}`
-                                          : "../../../noimg.svg"
+                                          : "/noimg.svg"
                                       }
                                       alt="Nakula Sadewa"
                                     />

@@ -17,11 +17,13 @@ import HeroSection from "../../component/Hero";
 import OurProduct from "../../component/OurProduct";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/navigation";
 
 export default function Landing() {
   const url = process.env.NEXT_PUBLIC_API_URL;
   const imageurl = process.env.NEXT_PUBLIC_IMG_URL;
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   const [sectionbisnis, setSectionbisnis] = useState(null);
   const [sectionhero, setSectionhero] = useState(null);
@@ -34,22 +36,20 @@ export default function Landing() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setTimeout(async () => {
-          const response = await axios.get(
-            `${url}/home?populate[0]=hero_section.gambar_hero.media&populate[1]=list_logos.logo_client.media&populate[2]=produk_section&populate[3]=list_produks.gambar_produk.media&populate[4]=keunggulan_section.mockup_produk.media&populate[5]=keunggulan_section.list_fiturs&populate[6]=bisnis_section&populate[7]=list_bidangs.icon_bisnis.media`
-          );
-          setSectionbisnis(response.data.data.attributes.bisnis_section);
-          setSectionhero(response.data.data.attributes.hero_section);
-          setSectionclient(response.data.data.attributes.list_logos);
-          setSectionproduk(response.data.data.attributes.produk_section);
-          setSectionlistproduk(response.data.data.attributes.list_produks);
-          setSectionlistbisnis(response.data.data.attributes.list_bidangs);
-          setSectionkeunggulan(response.data.data.attributes.keunggulan_section);
-          setLoading(false);
-        }, 500);
-      } catch (error) {
-        console.error("Error fetching API data:", error.message);
+        const response = await axios.get(
+          `${url}/home?populate[0]=hero_section.gambar_hero.media&populate[1]=list_logos.logo_client.media&populate[2]=produk_section&populate[3]=list_produks.gambar_produk.media&populate[4]=keunggulan_section.mockup_produk.media&populate[5]=keunggulan_section.list_fiturs&populate[6]=bisnis_section&populate[7]=list_bidangs.icon_bisnis.media`
+        );
+        setSectionbisnis(response.data.data.attributes.bisnis_section);
+        setSectionhero(response.data.data.attributes.hero_section);
+        setSectionclient(response.data.data.attributes.list_logos);
+        setSectionproduk(response.data.data.attributes.produk_section);
+        setSectionlistproduk(response.data.data.attributes.list_produks);
+        setSectionlistbisnis(response.data.data.attributes.list_bidangs);
+        setSectionkeunggulan(response.data.data.attributes.keunggulan_section);
         setLoading(false);
+      } catch (error) {
+        console.clear();
+        return router.push("error");
       }
     };
     fetchData();
@@ -58,8 +58,14 @@ export default function Landing() {
   return (
     <div className="h-full ">
       {loading ? (
-        <div className="flex py-56 md:py-52 justify-center items-center self-center ">
-          <img src="../../logo.png" className="size-24 mt-10 object-cover animate-pulse" />
+        <div className="flex justify-center items-center min-h-full">
+          <Image
+            src="/logo.png"
+            className="size-24 object-cover absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse "
+            width={200}
+            height={300}
+            style={{ width: "300", height: "300" }}
+          />
         </div>
       ) : (
         <Animation>
@@ -84,11 +90,14 @@ export default function Landing() {
               <div className="flex items-center   ">
                 <Marquee autoFill={true} gradient={true} gradientWidth={50}>
                   {sectionclient.data.map((item) => (
-                    <img
+                    <Image
                       key={item.id}
                       src={`${imageurl}${item.attributes.logo_client.data.attributes.url}`}
                       alt=""
                       className="h-14 w-18 md:h-26 md:w-30 object-scale-up rounded-2xl md-1 md:mx-3"
+                      height={300}
+                      width={300}
+                      style={{ width: "auto", height: "auto" }}
                     />
                   ))}
                 </Marquee>

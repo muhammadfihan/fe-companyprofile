@@ -15,6 +15,8 @@ import { Tab } from "@headlessui/react";
 import Footer2 from "../../../component/Footer2";
 import Animation from "../../../component/Animation";
 import VisibleComponent from "../../../component/Visible";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -25,6 +27,7 @@ export default function DevService() {
   const imageurl = process.env.NEXT_PUBLIC_IMG_URL;
   const [loading, setLoading] = useState(true);
   const { ref, isVisible } = VisibleComponent();
+  const router = useRouter();
 
   const [mainsection, setMainsection] = useState(null);
   const [developersection, setDevelopersection] = useState(null);
@@ -33,14 +36,19 @@ export default function DevService() {
 
   useEffect(() => {
     async function fetchSkill() {
-      const response = await axios.get(
-        `${url}/skill-developer?populate[0]=main_section&populate[1]=developer_section.icon_center.media&populate[2]=developer_section.banner_icon.media&populate[3]=skill_section.list_skills.list_skill_details.icon_skill.media`
-      );
-      setMainsection(response.data.data.attributes.main_section);
-      setDevelopersection(response.data.data.attributes.developer_section);
-      setJudulskill(response.data.data.attributes.skill_section);
-      setListskill(response.data.data.attributes.skill_section.list_skills);
-      setLoading(false);
+      try {
+        const response = await axios.get(
+          `${url}/skill-developer?populate[0]=main_section&populate[1]=developer_section.icon_center.media&populate[2]=developer_section.banner_icon.media&populate[3]=skill_section.list_skills.list_skill_details.icon_skill.media`
+        );
+        setMainsection(response.data.data.attributes.main_section);
+        setDevelopersection(response.data.data.attributes.developer_section);
+        setJudulskill(response.data.data.attributes.skill_section);
+        setListskill(response.data.data.attributes.skill_section.list_skills);
+        setLoading(false);
+      } catch (error) {
+        console.clear();
+        return router.push("/error");
+      }
     }
 
     fetchSkill();
@@ -53,23 +61,23 @@ export default function DevService() {
       ) : (
         <Animation>
           <section className="h-full">
-            <div className="flex flex-col items-center self-center py-28 h-full  bg-gradient-to-r from-gray-100 to-gray-300">
+            <div className="flex flex-col items-center self-center py-28 h-full  ">
               <div className="flex flex-col text-center mt-10 gap-y-8">
-                <div className="bg-gray-100 font-normal text-xs md:text-sm md:w-80 self-center p-2 rounded-xl">
+                <div className="bg-gray-100 text-gray-800 font-semibold text-xs md:text-lg md:w-96 self-center md:px-4 p-2 rounded-xl">
                   {mainsection.judul_path}
                 </div>
                 <div className="text-xl font-semibold md:text-4xl"> {mainsection.subjudul}</div>
-                <div className="px-[8%] font-bold md:text-4xl md:mx-[20%] text-2xl bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-gray-800">
+                <div className="px-[8%] font-bold md:text-4xl md:mx-[20%] text-2xl bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-pink-700">
                   {mainsection.judul_utama}
                 </div>
                 <div className="px-[10%] md:text-xl md:mx-[10%] tex-sm font-light text-gray-600">
                   {mainsection.deskripsi}
                 </div>
                 <div className="flex flex-row justify-center items-center gap-x-5">
-                  <button className="bg-red-500 p-2 text-white px-4 rounded-full text-xs md:text-lg">
+                  <button className="bg-red-500 p-2 text-white px-4 rounded-xl text-xs md:text-lg">
                     Mulai Konsultasi
                   </button>
-                  <button className="bg-gray-100 p-2 text-gray-800 px-4 rounded-full text-xs md:text-lg">
+                  <button className="bg-gray-100 p-2 text-gray-800 px-4 rounded-xl text-xs md:text-lg">
                     Selengkapnya
                   </button>
                 </div>
@@ -109,14 +117,17 @@ export default function DevService() {
                   </div>
                 </div>
                 <div className="p-10 self-center order-first md:order-none">
-                  <img
+                  <Image
                     src={
                       developersection.icon_center.data
                         ? `${imageurl}${developersection.icon_center.data.attributes.url}`
-                        : "../../../noimg.svg"
+                        : "/noimg.svg"
                     }
                     className="w-52"
                     alt=""
+                    width={300}
+                    height={300}
+                    style={{ width: "15rem", height: "auto" }}
                   />
                 </div>
                 <div className="grid grid-rows-1 md:grid-cols-2 gap-y-4 mt-4">
@@ -133,7 +144,7 @@ export default function DevService() {
                   <div className="py-10">
                     <div className="gap-x-6 w-3/4 ms-10 font-medium text-lg md:text-2xl text-white flex justify-center items-center gap-y-4">
                       <div>
-                        <img
+                        <Image
                           src={
                             developersection.banner_icon.data
                               ? `${imageurl}${developersection.banner_icon.data.attributes.url}`
@@ -141,6 +152,8 @@ export default function DevService() {
                           }
                           className="hidden md:block w-24"
                           alt=""
+                          width={100}
+                          height={100}
                         />
                       </div>
                       <h1 className="text-start text-gray-800 ">{developersection.banner_text}</h1>
@@ -198,15 +211,17 @@ export default function DevService() {
                               >
                                 <ul className="mt-1 flex flex-col justify-center items-center space-y-2 leading-4 text-gray-500 animate-jump-in animate-once animate-duration-500 animate-delay-0 animate-ease-in">
                                   <li>
-                                    <img
+                                    <Image
                                       src={
                                         skillitem.attributes.icon_skill.data
                                           ? `${imageurl}${skillitem.attributes.icon_skill.data.attributes.url}`
-                                          : "../../../noimg.svg"
+                                          : "/noimg.svg"
                                       }
                                       alt=""
                                       ref={ref}
                                       className="size-12 "
+                                      width={300}
+                                      height={300}
                                     />
                                   </li>
                                   <li className="text-md font-medium">

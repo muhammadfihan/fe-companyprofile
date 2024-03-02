@@ -8,10 +8,13 @@ import { faChevronLeft, faChevronRight, faCoffee, faStar } from "@fortawesome/fr
 import axios from "axios";
 import Navbar from "../../component/Navbar";
 import Animation from "../../component/Animation";
+import { useRouter } from "next/navigation";
 
 export default function Work() {
   const url = process.env.NEXT_PUBLIC_API_URL;
   const imageurl = process.env.NEXT_PUBLIC_IMG_URL;
+  const router = useRouter();
+
   const [data, setData] = useState([]);
   const [data1, setData1] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,19 +32,18 @@ export default function Work() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setTimeout(async () => {
-          const response = await axios.get(
-            `${url}/portofolio?populate[0]=main_section&populate[1]=count_section&populate[2]=portofolio_section&populate[3]=list_portofolios.gambar_utama.media`
-          );
-          setMain(response.data.data.attributes.main_section);
-          setCount(response.data.data.attributes.count_section);
-          setPortofolio(response.data.data.attributes.portofolio_section);
-          setList(response.data.data.attributes.list_portofolios);
+        const response = await axios.get(
+          `${url}/portofolio?populate[0]=main_section&populate[1]=count_section&populate[2]=portofolio_section&populate[3]=list_portofolios.gambar_utama.media`
+        );
+        setMain(response.data.data.attributes.main_section);
+        setCount(response.data.data.attributes.count_section);
+        setPortofolio(response.data.data.attributes.portofolio_section);
+        setList(response.data.data.attributes.list_portofolios);
 
-          setLoading(false);
-        }, 400);
+        setLoading(false);
       } catch (error) {
-        console.error("Error fetching API data:", error.message);
+        console.clear();
+        return router.push("/error");
       }
     };
 

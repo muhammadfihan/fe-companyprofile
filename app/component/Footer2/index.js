@@ -1,11 +1,11 @@
 "use client";
 
 import gambar from "../../../public/image5.jpg";
-import Image from "next/image";
 import ContentFooter from "../ContentFooter";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const Footer2 = () => {
   const url = process.env.NEXT_PUBLIC_API_URL;
@@ -42,10 +42,14 @@ const Footer2 = () => {
               <div className="bg-transparant absolute  top-0 left-0 z-10 h-full w-full flex items-center justify-center md:px-8 lg:px-28">
                 <div className="flex justify-center ">
                   <div className=" rounded-3xl overflow-hidden mt-4 md:mx-10 mx-5">
-                    <img
-                      className="md:h-[20vw] h-[40vw] sm:h-[40vw] w-[100vw] lg:h-[15vw] object-cover brightness-custom"
+                    <Image
+                      className="md:h-[20vw] h-[40vw] sm:h-[40vw] w-[100vw] lg:h-[17vw] object-cover brightness-custom"
                       src={`${imageurl}${isifooter.gambar_footer.data.attributes.url}`}
                       alt="Company Logo"
+                      priority={true}
+                      height={200}
+                      width={1000}
+                      style={{ objectFit: "cover" }}
                     />
                   </div>
                   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-10">
@@ -63,7 +67,7 @@ const Footer2 = () => {
               </div>
             </div>
           </section>
-          <section className="-mt-36 md:-mt-32 relative z-20">
+          <section className=" md:-mt-32 relative z-20">
             <ContentFooter />
           </section>
         </div>
