@@ -164,24 +164,6 @@ export default function Career() {
                   </button>
                 </div>
               )}
-              {/* {data.length >= itemsPerPage && (
-                <div className="mt-4 flex justify-center items-center text-center gap-4">
-                  <button
-                    onClick={handlePrevPage}
-                    disabled={currentPage === 1}
-                    className="mr-2 px-4 py-2    disabled:opacity-60 border border-red-500"
-                  >
-                    <FontAwesomeIcon icon={faChevronLeft} className="text-red-500 text-bold" />
-                  </button>
-                  <button
-                    onClick={handleNextPage}
-                    disabled={currentPage === totalPages}
-                    className="mr-2 px-4 py-2    disabled:opacity-60 border border-red-500"
-                  >
-                    <FontAwesomeIcon icon={faChevronRight} className="text-red-500 text-bold" />
-                  </button>
-                </div>
-              )} */}
             </div>
           </section>
           <div className="">

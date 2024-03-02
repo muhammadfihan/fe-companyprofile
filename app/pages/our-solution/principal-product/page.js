@@ -1,5 +1,4 @@
 "use client";
-import Navbar from "../../../component/Navbar";
 import { useState, useEffect } from "react";
 import Animation from "../../../component/Animation";
 import ItemPrincipal from "../../../component/DataPrincipal";

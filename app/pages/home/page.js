@@ -1,7 +1,5 @@
 "use client";
 
-import gambar from "../../../public/image5.jpg";
-import gambar4 from "../../../public/image4.png";
 import Image from "next/image";
 import Footer1 from "../../component/Footer";
 import Marquee from "react-fast-marquee";
@@ -9,10 +7,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import ItemSolution from "../../component/DataSolution";
 import ItemFeature from "../../component/DataFeature";
-import Navbar from "../../component/Navbar";
 import Animation from "../../component/Animation";
 import { motion } from "framer-motion";
-import VisibleComponent from "../../component/Visible";
 import HeroSection from "../../component/Hero";
 import OurProduct from "../../component/OurProduct";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

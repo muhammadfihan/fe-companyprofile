@@ -1,6 +1,5 @@
 "use client";
 
-import gambar from "../../../public/image5.jpg";
 import ContentFooter from "../ContentFooter";
 import axios from "axios";
 import { useState, useEffect } from "react";

@@ -1,18 +1,7 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle, faCoffee, faStar } from "@fortawesome/free-solid-svg-icons";
-import VisibleComponent from "../Visible";
 import Image from "next/image";
 
-const ItemCard = ({
-  itemprofile,
-  itemnama,
-  itememail,
-  itemlinkfb,
-  itemlinkig,
-  itemlinktwt,
-  index,
-}) => {
+const ItemCard = ({ itemprofile, itemnama, itememail }) => {
   return (
     <div className="flex flex-col justify-center items-center gap-8 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 ">
       <div className="flex h-full">

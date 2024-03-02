@@ -52,7 +52,6 @@ const Footer1 = () => {
       if (response.ok) {
         console.log("Post successful!");
         setPostData({
-          // Reset formulir setelah berhasil menambahkan data
           nama: "",
           email: "",
           nohp: "",
@@ -60,7 +59,6 @@ const Footer1 = () => {
           pesan: "",
         });
         setModal(true);
-        // Lakukan sesuatu setelah sukses menambahkan data
       } else {
         console.error("Failed to add post");
       }

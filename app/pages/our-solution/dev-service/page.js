@@ -1,16 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronLeft,
-  faChevronRight,
-  faCoffee,
-  faStar,
-  faCheckCircle,
-} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import Navbar from "../../../component/Navbar";
 import { Tab } from "@headlessui/react";
 import Footer2 from "../../../component/Footer2";
 import Animation from "../../../component/Animation";

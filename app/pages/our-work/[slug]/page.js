@@ -1,10 +1,7 @@
 "use client";
 import React from "react";
 import axios from "axios";
-import DetailItem from "../../../component/DetailWork";
 import { useEffect, useState } from "react";
-import { useRouter, useParams } from "next/navigation";
-import Navbar from "../../../component/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Marquee from "react-fast-marquee";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";

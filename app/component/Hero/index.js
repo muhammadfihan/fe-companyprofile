@@ -1,8 +1,5 @@
 // components/Item.js
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee, faStar } from "@fortawesome/free-solid-svg-icons";
-import Image from "next/image";
 import VisibleComponent from "../Visible";
 
 const HeroSection = ({ gambar, perusahaan, deskripsi, kalimat }) => {

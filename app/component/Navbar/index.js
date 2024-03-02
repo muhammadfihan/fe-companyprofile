@@ -13,6 +13,7 @@ import {
   FingerPrintIcon,
   RectangleGroupIcon,
   SquaresPlusIcon,
+  CodeBracketIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from "@heroicons/react/20/solid";
@@ -23,7 +24,7 @@ const navmenu = [
     name: "Custom Software Development",
     description: "Get a better understanding of your traffic",
     href: "/pages/our-solution/custom-development",
-    icon: ChartPieIcon,
+    icon: CodeBracketIcon,
   },
   // {
   //   name: "Asset Management",

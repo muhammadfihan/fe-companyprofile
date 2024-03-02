@@ -1,4 +1,3 @@
-// components/DetailItem.js
 import React from "react";
 
 const DetailItem = ({ item }) => {

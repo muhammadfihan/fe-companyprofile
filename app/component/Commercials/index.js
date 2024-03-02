@@ -1,6 +1,4 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle, faCoffee, faStar } from "@fortawesome/free-solid-svg-icons";
 import VisibleComponent from "../Visible";
 import Image from "next/image";
 

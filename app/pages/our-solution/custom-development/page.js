@@ -1,12 +1,10 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import Footer2 from "../../../component/Footer2";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import Navbar from "../../../component/Navbar";
 import ItemCustom from "../../../component/DataCustomDev";
 import Animation from "../../../component/Animation";
 import { useRouter } from "next/navigation";
@@ -184,9 +182,6 @@ export default function CustomDev() {
               </div>
             </div>
           </section>
-          {/* <section className="mt-[100%] sm:md-[30%] md:mt-[50%] lg:mt-[68%]">
-          <Footer1 />
-        </section> */}
         </Animation>
       )}
     </div>

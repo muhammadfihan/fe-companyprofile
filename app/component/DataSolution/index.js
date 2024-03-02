@@ -1,7 +1,5 @@
 // components/Item.js
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee, faStar } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import VisibleComponent from "../Visible";
 
@@ -64,10 +62,6 @@ const ItemSolution = ({ gambarfitur, judulgambar, descjudul, index }) => {
               />
             </svg>
           </button>
-          {/* <div className="flex items-center justify-start  gap-x-1 ms-2">
-            <FontAwesomeIcon icon={faStar} className=" text-yellow-400" />
-            <p className="md:text-md lg:text-lg text-xs font-light">400++ successful project</p>
-          </div> */}
         </div>
       </div>
     </div>

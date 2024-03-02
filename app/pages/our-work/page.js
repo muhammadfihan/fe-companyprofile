@@ -204,9 +204,6 @@ export default function Work() {
               </div>
             </div>
           </section>
-          {/* <section className="mt-[100%] sm:md-[30%] md:mt-[50%] lg:mt-[68%]">
-      <Footer1 />
-    </section> */}
         </Animation>
       )}
     </div>

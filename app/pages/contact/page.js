@@ -1,7 +1,6 @@
 "use client";
 
 import Footer1 from "../../component/Footer";
-import Navbar from "../../component/Navbar";
 import Animation from "../../component/Animation";
 import Marquee from "react-fast-marquee";
 import { motion } from "framer-motion";
@@ -77,47 +76,6 @@ export default function Contact() {
                     itememail={item.attributes.email}
                   />
                 ))}
-                {/* <div className="flex flex-col gap-5 justify start items-start mx-9 lg:mt-10">
-                <div className="">
-                  <div className="text-sm font-light md:text-lg">TAKE THE LEAD</div>
-                  <div className="text-lg font-medium md:text-2xl">Reach out to our COO</div>
-                </div>
-                <div className="">
-                  <div className="text-sm font-light text-justify md:text-lg">
-                    Looking for a reliable development partner to drive your business forward? Get
-                    in touch with us today! We’re ready to help you reach your objectives and
-                    elevate your software development projects to new heights.
-                  </div>
-                </div>
-                <div className="flex flex-row gap-4 xl:mb-3">
-                  <FontAwesomeIcon
-                    icon={faPhone}
-                    className="text-md bg-gray-400 rounded-lg shadow-md  text-white p-3"
-                  />
-                  <div className="flex justify-center self-center font-light text-sm md:text-xl">
-                    asutomo@code.id
-                  </div>
-                </div>
-                <div className="flex flex-row gap-4 xl:mb-3">
-                  <FontAwesomeIcon
-                    icon={faEnvelope}
-                    className="text-md bg-gray-400 rounded-lg shadow-md  text-white p-3"
-                  />
-                  <div className="flex justify-center self-center font-light text-sm md:text-xl">
-                    +62-21-2933 9528
-                  </div>
-                </div>
-                <div className="flex flex-row gap-4">
-                  <FontAwesomeIcon
-                    icon={faLocationDot}
-                    className="text-md bg-gray-400 rounded-lg shadow-md  text-white p-3"
-                  />
-                  <div className="flex justify-center self-center font-light text-sm md:text-xl">
-                    PT. Code Development Indonesia APL Tower 30th Floor Central Park Jalan Letjen S.
-                    Parman Kav 28 Jakarta, 11470, Indonesia
-                  </div>
-                </div>
-              </div> */}
               </div>
               <div className="px-12 lg:px-36 mt-20">
                 <motion.div
