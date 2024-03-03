@@ -13,6 +13,7 @@ import {
   FingerPrintIcon,
   RectangleGroupIcon,
   SquaresPlusIcon,
+  Cog6ToothIcon,
   CodeBracketIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
@@ -24,7 +25,7 @@ const navmenu = [
     name: "Custom Software Development",
     description: "Get a better understanding of your traffic",
     href: "/pages/our-solution/custom-development",
-    icon: CodeBracketIcon,
+    icon: Cog6ToothIcon,
   },
   // {
   //   name: "Asset Management",
@@ -48,7 +49,7 @@ const navmenu = [
     name: "Developer as a Service",
     description: "Build strategic funnels that will convert",
     href: "/pages/our-solution/dev-service",
-    icon: ArrowPathIcon,
+    icon: CodeBracketIcon,
   },
 ];
 // const callsToAction = [

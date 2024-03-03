@@ -42,8 +42,12 @@ const Footer2 = () => {
                 <div className="flex justify-center ">
                   <div className=" rounded-3xl overflow-hidden mt-4 md:mx-10 mx-5">
                     <Image
-                      className="md:h-[20vw] h-[40vw] sm:h-[40vw] w-[100vw] lg:h-[17vw] object-cover brightness-custom"
-                      src={`${imageurl}${isifooter.gambar_footer.data.attributes.url}`}
+                      className="md:h-[20vw] h-[40vw] sm:h-[40vw] w-[100vw] lg:h-[17vw] object-cover brightness-custom bg-gray-500"
+                      src={
+                        isifooter.gambar_footer.data
+                          ? `${imageurl}${isifooter.gambar_footer.data.attributes.url}`
+                          : "../../noimg.svg"
+                      }
                       alt="Company Logo"
                       priority={true}
                       height={200}

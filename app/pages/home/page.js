@@ -60,6 +60,7 @@ export default function Landing() {
             className="size-24 object-cover absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse "
             width={200}
             height={300}
+            alt=""
             style={{ width: "300", height: "300" }}
           />
         </div>
@@ -116,7 +117,11 @@ export default function Landing() {
                   {sectionlistproduk.data.map((item, index) => (
                     <ItemSolution
                       key={item.id}
-                      gambarfitur={item.attributes.gambar_produk.data.attributes.url}
+                      gambarfitur={
+                        item.attributes.gambar_produk.data
+                          ? `${imageurl}${item.attributes.gambar_produk.data.attributes.url}`
+                          : "../../../noimg.svg"
+                      }
                       judulgambar={item.attributes.nama_produk}
                       descjudul={item.attributes.deskripsi}
                       index={index}

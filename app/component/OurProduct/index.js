@@ -23,15 +23,17 @@ const OurProduct = ({ text, desc, listfitur, image, index }) => {
             <div className="h-[46px] w-[3px] bg-gray-800 absolute -start-[17px] top-[124px] rounded-s-lg"></div>
             <div className="h-[46px] w-[3px] bg-gray-800 absolute -start-[17px] top-[178px] rounded-s-lg"></div>
             <div className="h-[64px] w-[3px] bg-gray-800 absolute -end-[17px] top-[142px] rounded-e-lg"></div>
-            <div className="rounded-[2rem] overflow-hidden w-[272px] h-[472px] bg-white ">
-              <Image
-                src={image}
-                className=" w-[272px] h-[472px]"
-                alt=""
-                width={500}
-                height={500}
-                style={{ width: "auto", height: "auto" }}
-              />
+            <div className="rounded-[2rem] overflow-hidden w-[272px] h-[472px] bg-white">
+              <div className="flex justify-center items-center h-full">
+                <Image
+                  src={image}
+                  className=" w-[272px] h-[472px] self-center"
+                  alt=""
+                  width={500}
+                  height={500}
+                  style={{ width: "auto", height: "auto" }}
+                />
+              </div>
             </div>
           </div>
         </div>

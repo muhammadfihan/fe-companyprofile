@@ -105,6 +105,7 @@ export default function Test() {
                     }
                     className="object-cover rounded-xl shadow-md md:h-[23.1rem]"
                     alt=""
+                    priority={true}
                     width={500}
                     height={500}
                     style={{ width: "1000px", height: "23.1rem", objectFit: "cover" }}
@@ -156,50 +157,86 @@ export default function Test() {
                   {commercialsection.judul_utama}
                 </p>
               </div>
-              <div className=" flex flex-wrap justify-center gap-y-4 md:gap-7 md:px-24">
-                {currentItems.map((item, index) => (
-                  <ItemCommercials
-                    key={item.id}
-                    itemicon={
-                      item.attributes.icon.data
-                        ? `${imageurl}${item.attributes.icon.data.attributes.url}`
-                        : "../../../noimg.svg"
-                    }
-                    itemjudul={item.attributes.judul}
-                    itemsubjudul={item.attributes.subjudul}
-                    produk={item.attributes.nama_produk}
-                    listitem={item.attributes.list_commercial_fiturs.data.map((itemfitur) => (
-                      <div key={itemfitur.id}>
-                        <li className="flex items-center space-x-3">
-                          <p className="md:text-md lg:text-lg text-xs font-light self-baseline">
-                            <FontAwesomeIcon icon={faCheckCircle} className=" text-green-500 " />
-                          </p>
-                          <span>{itemfitur.attributes.fitur}</span>
-                        </li>
-                      </div>
+              <div className="flex justify-center">
+                {listcommercial.length > itemsPerPage && (
+                  <div className="xl:flex justify-center items-center text-center p-4 hidden">
+                    <button
+                      onClick={() => paginate(currentPage - 1)}
+                      disabled={currentPage === 1}
+                      className="mr-2 px-4 py-2  disabled:opacity-50 "
+                    >
+                      <FontAwesomeIcon
+                        icon={faChevronLeft}
+                        className="text-red-500 text-bold text-2xl"
+                      />
+                    </button>
+                  </div>
+                )}
+
+                <div className="flex flex-col xl:min-w-[67rem]">
+                  <div className=" flex flex-wrap justify-center gap-y-4 md:gap-7">
+                    {currentItems.map((item, index) => (
+                      <ItemCommercials
+                        key={item.id}
+                        itemicon={
+                          item.attributes.icon.data
+                            ? `${imageurl}${item.attributes.icon.data.attributes.url}`
+                            : "../../../noimg.svg"
+                        }
+                        itemjudul={item.attributes.judul}
+                        itemsubjudul={item.attributes.subjudul}
+                        produk={item.attributes.nama_produk}
+                        listitem={item.attributes.list_commercial_fiturs.data.map((itemfitur) => (
+                          <div key={itemfitur.id}>
+                            <li className="flex items-center space-x-3">
+                              <p className="md:text-md lg:text-lg text-xs font-light self-baseline">
+                                <FontAwesomeIcon
+                                  icon={faCheckCircle}
+                                  className=" text-green-500 "
+                                />
+                              </p>
+                              <span>{itemfitur.attributes.fitur}</span>
+                            </li>
+                          </div>
+                        ))}
+                        index={index}
+                      />
                     ))}
-                    index={index}
-                  />
-                ))}
-              </div>
-              {listcommercial.length > itemsPerPage && (
-                <div className="mt-4 flex justify-center items-center text-center gap-4">
-                  <button
-                    onClick={() => paginate(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    className="mr-2 px-4 py-2    disabled:opacity-60 border border-red-500"
-                  >
-                    <FontAwesomeIcon icon={faChevronLeft} className="text-red-500 text-bold" />
-                  </button>
-                  <button
-                    onClick={() => paginate(currentPage + 1)}
-                    disabled={indexOfLastItem >= listcommercial?.length}
-                    className="mr-2 px-4 py-2    disabled:opacity-60 border border-red-500"
-                  >
-                    <FontAwesomeIcon icon={faChevronRight} className="text-red-500 text-bold" />
-                  </button>
+                  </div>
+                  {listcommercial.length > itemsPerPage && (
+                    <div className="mt-4 flex justify-center items-center text-center gap-4 xl:hidden">
+                      <button
+                        onClick={() => paginate(currentPage - 1)}
+                        disabled={currentPage === 1}
+                        className="mr-2 px-4 py-2    disabled:opacity-60 border border-red-500"
+                      >
+                        <FontAwesomeIcon icon={faChevronLeft} className="text-red-500 text-bold" />
+                      </button>
+                      <button
+                        onClick={() => paginate(currentPage + 1)}
+                        disabled={indexOfLastItem >= listcommercial?.length}
+                        className="mr-2 px-4 py-2    disabled:opacity-60 border border-red-500"
+                      >
+                        <FontAwesomeIcon icon={faChevronRight} className="text-red-500 text-bold" />
+                      </button>
+                    </div>
+                  )}
                 </div>
-              )}
+                {listcommercial.length > itemsPerPage && (
+                  <div className="hidden xl:flex justify-center items-center text-center p-4">
+                    <button
+                      onClick={() => paginate(currentPage + 1)}
+                      disabled={indexOfLastItem >= listcommercial?.length}
+                      className="mr-2 px-4 py-2  disabled:opacity-50 "
+                    >
+                      <FontAwesomeIcon
+                        icon={faChevronRight}
+                        className="text-red-500 text-bold text-2xl"
+                      />
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </section>
           <Footer2 />

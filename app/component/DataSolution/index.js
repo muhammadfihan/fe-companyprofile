@@ -26,7 +26,7 @@ const ItemSolution = ({ gambarfitur, judulgambar, descjudul, index }) => {
       }`}
     >
       <Image
-        src={`${imageurl}${gambarfitur}`}
+        src={gambarfitur}
         alt={`Image ${index + 1}`}
         className="size-52 sm:size-60 md:size-72 lg:size-96 object-contain rounded-2xl"
         width={500}

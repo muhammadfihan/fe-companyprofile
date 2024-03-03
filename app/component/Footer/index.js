@@ -109,8 +109,12 @@ const Footer1 = () => {
                 <div className="flex justify-center ">
                   <div className="relative md:rounded-3xl overflow-hidden mt-4 md:mx-10">
                     <Image
-                      className="w-screen h-[550px] md:h-[420px] sm:w-[1200px] xl:w-screen object-cover brightness-custom"
-                      src={`${imageurl}${mainfooter.gambar_footer.data.attributes.url}`}
+                      className="w-screen h-[550px] md:h-[420px] sm:w-[1200px] xl:w-screen object-cover brightness-custom bg-gray-500"
+                      src={
+                        mainfooter.gambar_footer.data
+                          ? `${imageurl}${mainfooter.gambar_footer.data.attributes.url}`
+                          : "../../noimg.svg"
+                      }
                       width={1000}
                       height={1000}
                       priority={true}
